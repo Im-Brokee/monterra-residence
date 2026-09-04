@@ -1,4 +1,4 @@
-import type { Addon, Apartment } from "@/lib/types";
+import type { Addon, Apartment, InventoryItem, PriceHistoryEntry } from "@/lib/types";
 
 const layouts = [
   ["studio-27", 27, 1, "Studio Urban"],
@@ -117,3 +117,29 @@ export const demoAddons: Addon[] = [
     active: true
   }
 ];
+
+
+export const demoInventory: InventoryItem[] = [
+  { id: "inv-g101", code: "G-101", type: "parking", name: "Miejsce postojowe G-101", description: "Garaż podziemny · blisko klatki A", building: "A", floor: -1, area: null, price: 45000, status: "available", active: true },
+  { id: "inv-g102", code: "G-102", type: "parking", name: "Miejsce postojowe G-102", description: "Garaż podziemny · szerokie miejsce", building: "A", floor: -1, area: null, price: 49000, status: "available", active: true },
+  { id: "inv-g103", code: "G-103", type: "parking", name: "Miejsce postojowe G-103", description: "Garaż podziemny · przy windzie", building: "A", floor: -1, area: null, price: 52000, status: "reserved", active: true },
+  { id: "inv-P01", code: "P-01", type: "parking", name: "Miejsce naziemne P-01", description: "Parking zewnętrzny", building: null, floor: 0, area: null, price: 25000, status: "available", active: true },
+  { id: "inv-k01", code: "K-01", type: "storage", name: "Komórka K-01", description: "Komórka lokatorska 3,2 m²", building: "A", floor: -1, area: 3.2, price: 14500, status: "available", active: true },
+  { id: "inv-k02", code: "K-02", type: "storage", name: "Komórka K-02", description: "Komórka lokatorska 4,2 m²", building: "A", floor: -1, area: 4.2, price: 18000, status: "available", active: true },
+  { id: "inv-k03", code: "K-03", type: "storage", name: "Komórka K-03", description: "Komórka lokatorska 5,1 m²", building: "A", floor: -1, area: 5.1, price: 22000, status: "sold", active: true }
+];
+
+export function demoPriceHistory(apartmentPrice: number): PriceHistoryEntry[] {
+  const now = new Date();
+  return [4, 3, 2, 1, 0].map((monthsAgo, index) => {
+    const d = new Date(now);
+    d.setMonth(now.getMonth() - monthsAgo);
+    const factor = [0.94, 0.96, 0.97, 0.985, 1][index];
+    return {
+      id: `demo-history-${index}`,
+      oldPrice: index === 0 ? null : Math.round(apartmentPrice * [0.92, 0.94, 0.96, 0.97, 0.985][index]),
+      newPrice: Math.round(apartmentPrice * factor),
+      changedAt: d.toISOString()
+    };
+  });
+}

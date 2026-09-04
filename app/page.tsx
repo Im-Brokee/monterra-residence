@@ -3,10 +3,10 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BuildingSelector } from "@/components/BuildingSelector";
 import { ApartmentCard } from "@/components/ApartmentCard";
-import { getApartments } from "@/lib/data";
+import { getApartments, getConstructionUpdates } from "@/lib/data";
 
 export default async function HomePage() {
-  const apartments = await getApartments();
+  const [apartments, constructionUpdates] = await Promise.all([getApartments(), getConstructionUpdates()]);
   const available = apartments.filter((a) => a.status === "available").length;
   const preview = apartments.filter((a) => a.status !== "sold").slice(0, 5);
 
@@ -54,7 +54,7 @@ export default async function HomePage() {
         </section>
 
         <section className="shell section">
-          <BuildingSelector />
+          <BuildingSelector apartments={apartments} />
         </section>
 
         <section className="shell section">
@@ -101,12 +101,13 @@ export default async function HomePage() {
         </section>
 
         <section className="shell section" id="postep">
-          <div className="sectionHeading"><span className="eyebrow">POSTĘP PRAC</span><h2>Od gruntu do odbioru</h2></div>
+          <div className="sectionHeading splitHeading"><div><span className="eyebrow">POSTĘP PRAC</span><h2>Od gruntu do odbioru</h2></div>{constructionUpdates[0] && <div className="progressNow"><strong>{constructionUpdates[0].progress}%</strong><span>{constructionUpdates[0].title}</span></div>}</div>
           <div className="timeline">
             {[['✓','Zakup gruntu','Q1 2024'],['✓','Projekt','Q2 2024'],['✓','Pozwolenie','Q3 2024'],['●','Rozpoczęcie budowy','Q1 2025'],['○','Stan surowy','Q4 2026'],['○','Wykończenie','Q2 2027'],['○','Odbiory','Q2 2028']].map(([icon,name,date], i) => (
               <div className={i <= 3 ? "timelineStep done" : "timelineStep"} key={name}><span>{icon}</span><strong>{name}</strong><small>{date}</small></div>
             ))}
           </div>
+          {constructionUpdates.length > 0 && <div className="constructionFeed">{constructionUpdates.slice(0,3).map((update) => <article key={update.id}><div className="constructionFeedProgress">{update.progress}%</div><div><strong>{update.title}</strong><p>{update.body}</p><small>{new Date(update.publishedAt).toLocaleDateString('pl-PL')}</small></div></article>)}</div>}
         </section>
 
         <section className="contactBand" id="kontakt">

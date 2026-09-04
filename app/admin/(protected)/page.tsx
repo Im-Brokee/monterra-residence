@@ -3,5 +3,13 @@ import { getAdminData } from "@/lib/data";
 
 export default async function AdminPage() {
   const data = await getAdminData();
-  return <AdminDashboard initialApartments={data.apartments as any} leads={data.leads as any} />;
+  return <AdminDashboard
+    projectId={data.projectId}
+    initialApartments={data.apartments as any}
+    initialLeads={data.leads}
+    initialInventory={data.inventory}
+    initialAddons={data.addons}
+    priceHistory={data.priceHistory}
+    initialConstruction={data.construction}
+  />;
 }
