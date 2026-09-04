@@ -10,7 +10,8 @@ export function ApartmentCard({ apartment }: { apartment: Apartment }) {
         <span className="unitCode">{apartment.unitNumber}</span>
       </div>
       <div className="planPreview">
-        <img src={apartment.floorplanUrl} alt={`Rzut mieszkania ${apartment.unitNumber}`} />
+        <span className="styleBadge">{apartment.styleName}</span>
+        <img src={apartment.floorplanUrl} alt={`Rzut mieszkania ${apartment.unitNumber}`} loading="lazy" decoding="async" />
       </div>
       <div className="apartmentMetrics">
         <strong>{formatArea(apartment.area)}</strong>

@@ -16,6 +16,8 @@ export default async function HomePage() {
       <main>
         <section className="hero">
           <div className="heroBackdrop">
+            <div className="heroGlow heroGlowOne" />
+            <div className="heroGlow heroGlowTwo" />
             <div className="heroBuilding">
               <div className="heroTower towerOne" />
               <div className="heroTower towerTwo" />
@@ -26,7 +28,12 @@ export default async function HomePage() {
             <span className="heroKicker">NOWA INWESTYCJA · POZNAŃ</span>
             <h1>Mieszkaj inaczej.</h1>
             <h2>Monterra Residence</h2>
-            <p>Poznań · 1–5 pokoi · interaktywny wybór mieszkań</p>
+            <p>Poznań · 1–5 pokoi · interaktywny wybór mieszkań · konfigurator ceny · spacer 3D</p>
+            <div className="heroMetaPills">
+              <span>architektura premium</span>
+              <span>garaż podziemny</span>
+              <span>smart home ready</span>
+            </div>
             <div className="heroActions">
               <Link className="button buttonGold" href="/mieszkania">Wybierz mieszkanie →</Link>
               <a className="button buttonGlass" href="#kontakt">Umów spotkanie</a>

@@ -13,7 +13,20 @@ export default async function ApartmentsPage({ searchParams }: { searchParams: P
     <>
       <Header />
       <main>
-        <section className="pageHero compactHero"><div className="shell"><span className="eyebrow light">MON TERRA RESIDENCE</span><h1>Dostępne mieszkania</h1><p>Filtruj ofertę, przełącz widok i przejdź do planu 2D, 3D, spaceru oraz konfiguratora ceny.</p></div></section>
+        <section className="pageHero compactHero">
+          <div className="shell compactHeroInner">
+            <div>
+              <span className="eyebrow light">MON TERRA RESIDENCE</span>
+              <h1>Dostępne mieszkania</h1>
+              <p>Filtruj ofertę, przełącz widok i przejdź do planu 2D, 3D, spaceru oraz konfiguratora ceny.</p>
+            </div>
+            <div className="compactHeroStats">
+              <div><strong>{apartments.length}</strong><span>lokali w bazie</span></div>
+              <div><strong>{apartments.filter((item) => item.status === "available").length}</strong><span>wolnych mieszkań</span></div>
+              <div><strong>3</strong><span>widoki prezentacji</span></div>
+            </div>
+          </div>
+        </section>
         <div className="shell section catalogSection"><ApartmentCatalog apartments={apartments} initialFloor={Number.isFinite(floor) ? floor : undefined} initialBuilding={building} /></div>
       </main>
       <Footer />
