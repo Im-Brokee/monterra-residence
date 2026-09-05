@@ -1,4 +1,5 @@
 import { demoAddons, demoApartments, demoInventory, demoPriceHistory } from "@/lib/demo-data";
+import { getApartmentVisuals } from "@/lib/visuals";
 import { createClient } from "@/lib/supabase/server";
 import type {
   Addon,
@@ -12,6 +13,7 @@ import type {
 
 function normalizeApartment(row: any): Apartment {
   const layout = Array.isArray(row.layout_types) ? row.layout_types[0] : row.layout_types;
+  const visuals = getApartmentVisuals({ styleName: layout?.style_name ?? "Monterra", rooms: Number(row.rooms), floor: Number(row.floor) });
   return {
     id: row.id,
     slug: row.slug,
@@ -28,7 +30,7 @@ function normalizeApartment(row: any): Apartment {
     styleName: layout?.style_name ?? "Monterra",
     floorplanUrl: layout?.floorplan_url ?? "/demo/floorplans/premium-67.svg",
     cutawayUrl: layout?.cutaway_url ?? "/demo/cutaways/premium-67.svg",
-    tourRooms: (layout?.tour_rooms ?? []) as TourRoom[],
+    tourRooms: ((layout?.tour_rooms as TourRoom[] | null)?.length ? (layout?.tour_rooms as TourRoom[]) : visuals.tourRooms).map((room, index) => ({ ...room, image: visuals.tourRooms[index]?.image ?? room.image })),
     exposure: row.exposure ?? "Południowy zachód",
     ceilingHeight: Number(row.ceiling_height ?? 2.7),
     published: Boolean(row.published)

@@ -65,8 +65,21 @@ export default async function HomePage() {
               <p>Spokojna bryła, dużo światła, dopracowane części wspólne i mieszkania zaprojektowane tak, żeby łatwo było wybrać je online.</p>
             </div>
             <div className="featureGrid" id="standard">
-              {[['03 min','do tramwaju'],['02','zielone dziedzińce'],['100%','garaż podziemny'],['2,70 m','wysokość mieszkań'],['Smart','Home ready'],['24/7','strefa mieszkańca']].map(([value,label], index) => (
-                <Reveal key={label} delay={index * 55}><div className="featureCard"><strong>{value}</strong><span>{label}</span></div></Reveal>
+              {[
+                ['3 min','do tramwaju'],
+                ['2','zielone dziedzińce'],
+                ['100%','garaż podziemny'],
+                ['2,70 m','wysokość mieszkań'],
+                ['Smart','home ready'],
+                ['24/7','strefa mieszkańca']
+              ].map(([value,label], index) => (
+                <Reveal key={label} delay={index * 55}>
+                  <div className="featureCard premiumFeatureCard">
+                    <small>{String(index + 1).padStart(2, '0')}</small>
+                    <strong>{value}</strong>
+                    <span>{label}</span>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </section>

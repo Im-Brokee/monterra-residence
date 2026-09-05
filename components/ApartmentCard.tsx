@@ -2,15 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Apartment } from "@/lib/types";
 import { balconyLabel, formatArea, formatPln, statusLabel } from "@/lib/format";
-
-function visualForApartment(apartment: Apartment) {
-  if (apartment.rooms >= 4) return "/media/bedroom.webp";
-  if (apartment.rooms === 3) return "/media/living.webp";
-  if (apartment.floor >= 4) return "/media/aerial-evening.webp";
-  return "/media/living.webp";
-}
+import { getApartmentVisuals } from "@/lib/visuals";
 
 export function ApartmentCard({ apartment }: { apartment: Apartment }) {
+  const visuals = getApartmentVisuals(apartment);
+
   return (
     <article className="apartmentCard premiumApartmentCard">
       <div className="apartmentCardTop overlayTop">
@@ -21,7 +17,7 @@ export function ApartmentCard({ apartment }: { apartment: Apartment }) {
       <Link href={`/mieszkania/${apartment.slug}`} className="apartmentVisualLink" aria-label={`Zobacz ${apartment.unitNumber}`}>
         <div className="apartmentPhoto">
           <Image
-            src={visualForApartment(apartment)}
+            src={visuals.card}
             alt={`Wizualizacja mieszkania ${apartment.unitNumber}`}
             fill
             sizes="(max-width: 760px) 100vw, (max-width: 1200px) 33vw, 25vw"
