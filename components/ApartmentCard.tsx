@@ -24,8 +24,8 @@ export function ApartmentCard({ apartment }: { apartment: Apartment }) {
             className="apartmentPhotoImage"
           />
           <div className="apartmentPhotoShade" />
+          <span className="styleBadge">{apartment.styleName}</span>
           <div className="apartmentPhotoMeta">
-            <span className="styleBadge">{apartment.styleName}</span>
             <span className="planBadge">plan 2D + widok 3D</span>
           </div>
           <div className="miniPlanFloating">
