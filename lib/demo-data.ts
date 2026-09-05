@@ -39,9 +39,9 @@ export const demoApartments: Apartment[] = layouts.map((layout, index) => {
     floorplanUrl: `/demo/floorplans/${code}.svg`,
     cutawayUrl: `/demo/cutaways/${code}.svg`,
     tourRooms: [
-      { id: "living", name: "Salon z kuchnią", image: "/demo/rooms/living.svg" },
-      { id: "bedroom", name: "Sypialnia", image: "/demo/rooms/bedroom.svg" },
-      { id: "bathroom", name: "Łazienka", image: "/demo/rooms/bathroom.svg" }
+      { id: "living", name: "Salon z kuchnią", image: "/media/living.webp" },
+      { id: "bedroom", name: "Sypialnia", image: "/media/bedroom.webp" },
+      { id: "bathroom", name: "Łazienka", image: "/media/bathroom.webp" }
     ],
     exposure: index % 2 === 0 ? "Południowy zachód" : "Południowy wschód",
     ceilingHeight: index >= 8 ? 2.9 : 2.7,

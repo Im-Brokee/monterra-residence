@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BuildingSelector } from "@/components/BuildingSelector";
 import { ApartmentCard } from "@/components/ApartmentCard";
+import { Reveal } from "@/components/Reveal";
 import { getApartments, getConstructionUpdates } from "@/lib/data";
 
 export default async function HomePage() {
@@ -14,108 +16,150 @@ export default async function HomePage() {
     <>
       <Header />
       <main>
-        <section className="hero">
-          <div className="heroBackdrop">
-            <div className="heroGlow heroGlowOne" />
-            <div className="heroGlow heroGlowTwo" />
-            <div className="heroBuilding">
-              <div className="heroTower towerOne" />
-              <div className="heroTower towerTwo" />
-              <div className="heroTower towerThree" />
-            </div>
+        <section className="hero heroRealEstate">
+          <div className="heroImageWrap">
+            <Image
+              src="/media/hero-building.webp"
+              alt="Monterra Residence w Poznaniu"
+              fill
+              priority
+              sizes="100vw"
+              className="heroRealImage"
+            />
+            <div className="heroRealShade" />
+            <div className="heroLightSweep" />
           </div>
-          <div className="shell heroContent">
-            <span className="heroKicker">NOWA INWESTYCJA · POZNAŃ</span>
-            <h1>Mieszkaj inaczej.</h1>
+
+          <div className="shell heroContent heroContentReal">
+            <span className="heroKicker">NOWA DEFINICJA KOMFORTU · POZNAŃ</span>
+            <h1>Miejsce,<br />w którym<br />chcesz być.</h1>
             <h2>Monterra Residence</h2>
-            <p>Poznań · 1–5 pokoi · interaktywny wybór mieszkań · konfigurator ceny · spacer 3D</p>
+            <p>Nowoczesna architektura, zieleń i pełny cyfrowy proces wyboru mieszkania — od pierwszego kliknięcia do konfiguracji ceny.</p>
             <div className="heroMetaPills">
-              <span>architektura premium</span>
-              <span>garaż podziemny</span>
-              <span>smart home ready</span>
+              <span>1–5 pokoi</span>
+              <span>2D + 3D + spacer</span>
+              <span>garaż i komórki</span>
             </div>
             <div className="heroActions">
-              <Link className="button buttonGold" href="/mieszkania">Wybierz mieszkanie →</Link>
-              <a className="button buttonGlass" href="#kontakt">Umów spotkanie</a>
+              <Link className="button buttonGold" href="/mieszkania">Zobacz mieszkania →</Link>
+              <a className="button buttonGlass" href="#inwestycja">Poznaj inwestycję</a>
             </div>
+          </div>
+
+          <div className="heroSideWords" aria-hidden="true">
+            <span>PRESTIŻ</span><span>NATURA</span><span>LOKALIZACJA</span><span>PRZYSZŁOŚĆ</span>
           </div>
         </section>
 
-        <section className="shell statStrip">
+        <section className="shell statStrip premiumStatStrip">
           <div><strong>{apartments.length}</strong><span>mieszkań w ofercie</span></div>
           <div><strong>Q2 2028</strong><span>termin oddania</span></div>
           <div><strong>7 min</strong><span>od centrum</span></div>
           <div><strong>{available}</strong><span>mieszkań dostępnych</span></div>
         </section>
 
-        <section className="shell section" id="inwestycja">
-          <div className="sectionHeading splitHeading">
-            <div><span className="eyebrow">MON TERRA</span><h2>Stworzone z myślą o codziennym komforcie</h2></div>
-            <p>Premium bez przesady: spokojna architektura, dobre światło, praktyczne rzuty i pełny cyfrowy proces wyboru mieszkania.</p>
-          </div>
-          <div className="featureGrid" id="standard">
-            {[['03 min','do tramwaju'],['02','zielone dziedzińce'],['100%','garaż podziemny'],['2,70 m','wysokość mieszkań'],['Smart','Home ready'],['24/7','strefa mieszkańca']].map(([value,label]) => (
-              <div className="featureCard" key={label}><strong>{value}</strong><span>{label}</span></div>
-            ))}
-          </div>
-        </section>
-
-        <section className="shell section">
-          <BuildingSelector apartments={apartments} />
-        </section>
-
-        <section className="shell section">
-          <div className="sectionHeading splitHeading">
-            <div><span className="eyebrow">DOSTĘPNE LOKALE</span><h2>10 typów planów. Setki możliwych lokali.</h2></div>
-            <Link href="/mieszkania" className="textLink">Zobacz wszystkie mieszkania →</Link>
-          </div>
-          <div className="apartmentGrid homeGrid">
-            {preview.map((apartment) => <ApartmentCard apartment={apartment} key={apartment.id} />)}
-          </div>
-        </section>
-
-        <section className="experiencePromo sectionDark">
-          <div className="shell promoGrid">
-            <div>
-              <span className="eyebrow light">POCZUJ PRZESTRZEŃ</span>
-              <h2>Plan 2D → widok 3D → spacer po mieszkaniu</h2>
-              <p>Klient nie musi wyobrażać sobie mieszkania z technicznego rzutu. Może obejrzeć układ w przekroju i wejść do środka jeszcze przed wizytą.</p>
-              <Link href={preview[0] ? `/mieszkania/${preview[0].slug}` : "/mieszkania"} className="button buttonGold">Zobacz przykładowe mieszkanie</Link>
+        <Reveal>
+          <section className="shell section" id="inwestycja">
+            <div className="sectionHeading splitHeading">
+              <div><span className="eyebrow">MON TERRA</span><h2>Architektura, która ma znaczenie także po latach</h2></div>
+              <p>Spokojna bryła, dużo światła, dopracowane części wspólne i mieszkania zaprojektowane tak, żeby łatwo było wybrać je online.</p>
             </div>
-            <div className="promoVisual">
-              <div className="isoRoom roomLiving">SALON</div>
-              <div className="isoRoom roomBed">SYPIALNIA</div>
-              <div className="isoRoom roomBath">ŁAZIENKA</div>
-              <div className="isoRoom roomKitchen">KUCHNIA</div>
+            <div className="featureGrid" id="standard">
+              {[['03 min','do tramwaju'],['02','zielone dziedzińce'],['100%','garaż podziemny'],['2,70 m','wysokość mieszkań'],['Smart','Home ready'],['24/7','strefa mieszkańca']].map(([value,label], index) => (
+                <Reveal key={label} delay={index * 55}><div className="featureCard"><strong>{value}</strong><span>{label}</span></div></Reveal>
+              ))}
             </div>
-          </div>
-        </section>
+          </section>
+        </Reveal>
 
-        <section className="shell section" id="lokalizacja">
-          <div className="sectionHeading splitHeading">
-            <div><span className="eyebrow">LOKALIZACJA</span><h2>Wszystko w zasięgu ręki</h2></div>
-            <p>Park, tramwaj, szkoła i codzienne usługi w kilku minutach od inwestycji.</p>
-          </div>
-          <div className="locationGrid">
-            <div className="locationCards">
-              <div><strong>Park Cytadela</strong><span>8 min spacerem</span></div>
-              <div><strong>Przystanek tramwajowy</strong><span>3 min spacerem</span></div>
-              <div><strong>Szkoła podstawowa</strong><span>5 min spacerem</span></div>
-              <div><strong>Sklepy i usługi</strong><span>4 min spacerem</span></div>
+        <Reveal>
+          <section className="shell section imageStorySection">
+            <div className="sectionHeading splitHeading">
+              <div><span className="eyebrow">WIZUALIZACJE</span><h2>Zobacz inwestycję zanim powstanie</h2></div>
+              <p>Pełnoekranowe wizualizacje zamiast pustych makiet. Każdy kluczowy fragment inwestycji ma własną prezentację.</p>
             </div>
-            <div className="mapMock"><div className="mapRoad road1"/><div className="mapRoad road2"/><div className="mapRoad road3"/><div className="mapPin">Monterra Residence</div></div>
-          </div>
-        </section>
+            <div className="storyGrid">
+              <figure className="storyCard storyWide">
+                <Image src="/media/aerial-evening.webp" alt="Monterra Residence z lotu ptaka wieczorem" fill sizes="(max-width:760px) 100vw, 66vw" className="storyImage" />
+                <figcaption><span>01</span><div><strong>Cała inwestycja</strong><small>Widok wieczorny</small></div></figcaption>
+              </figure>
+              <figure className="storyCard">
+                <Image src="/media/entrance.webp" alt="Wejście do Monterra Residence" fill sizes="(max-width:760px) 100vw, 33vw" className="storyImage" />
+                <figcaption><span>02</span><div><strong>Strefa wejścia</strong><small>Detal premium</small></div></figcaption>
+              </figure>
+            </div>
+          </section>
+        </Reveal>
 
-        <section className="shell section" id="postep">
-          <div className="sectionHeading splitHeading"><div><span className="eyebrow">POSTĘP PRAC</span><h2>Od gruntu do odbioru</h2></div>{constructionUpdates[0] && <div className="progressNow"><strong>{constructionUpdates[0].progress}%</strong><span>{constructionUpdates[0].title}</span></div>}</div>
-          <div className="timeline">
-            {[['✓','Zakup gruntu','Q1 2024'],['✓','Projekt','Q2 2024'],['✓','Pozwolenie','Q3 2024'],['●','Rozpoczęcie budowy','Q1 2025'],['○','Stan surowy','Q4 2026'],['○','Wykończenie','Q2 2027'],['○','Odbiory','Q2 2028']].map(([icon,name,date], i) => (
-              <div className={i <= 3 ? "timelineStep done" : "timelineStep"} key={name}><span>{icon}</span><strong>{name}</strong><small>{date}</small></div>
-            ))}
-          </div>
-          {constructionUpdates.length > 0 && <div className="constructionFeed">{constructionUpdates.slice(0,3).map((update) => <article key={update.id}><div className="constructionFeedProgress">{update.progress}%</div><div><strong>{update.title}</strong><p>{update.body}</p><small>{new Date(update.publishedAt).toLocaleDateString('pl-PL')}</small></div></article>)}</div>}
-        </section>
+        <Reveal>
+          <section className="shell section">
+            <BuildingSelector apartments={apartments} />
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className="shell section">
+            <div className="sectionHeading splitHeading">
+              <div><span className="eyebrow">DOSTĘPNE LOKALE</span><h2>Znajdź swoje idealne miejsce</h2></div>
+              <Link href="/mieszkania" className="textLink">Zobacz wszystkie mieszkania →</Link>
+            </div>
+            <div className="apartmentGrid homeGrid">
+              {preview.map((apartment, index) => <Reveal key={apartment.id} delay={index * 60}><ApartmentCard apartment={apartment} /></Reveal>)}
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className="experiencePromo sectionDark premiumExperiencePromo">
+            <div className="shell promoGrid">
+              <div>
+                <span className="eyebrow light">POCZUJ PRZESTRZEŃ</span>
+                <h2>Nie tylko plan. Wejdź do środka.</h2>
+                <p>Klient może zobaczyć salon, sypialnię i łazienkę, przełączyć się na rzut 2D, widok 3D i przejść przez mieszkanie jeszcze przed wizytą.</p>
+                <Link href={preview[0] ? `/mieszkania/${preview[0].slug}` : "/mieszkania"} className="button buttonGold">Uruchom spacer</Link>
+              </div>
+              <div className="interiorMosaic">
+                <div className="interiorMain"><Image src="/media/living.webp" alt="Salon Monterra Residence" fill sizes="50vw" className="storyImage" /></div>
+                <div className="interiorSmall"><Image src="/media/bedroom.webp" alt="Sypialnia Monterra Residence" fill sizes="25vw" className="storyImage" /></div>
+                <div className="interiorSmall"><Image src="/media/bathroom.webp" alt="Łazienka Monterra Residence" fill sizes="25vw" className="storyImage" /></div>
+              </div>
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className="shell section" id="lokalizacja">
+            <div className="sectionHeading splitHeading">
+              <div><span className="eyebrow">LOKALIZACJA</span><h2>Wszystko w zasięgu ręki</h2></div>
+              <p>Park, tramwaj, szkoła i codzienne usługi w kilku minutach od inwestycji.</p>
+            </div>
+            <div className="locationGrid premiumLocationGrid">
+              <div className="locationCards">
+                <div><strong>Park Cytadela</strong><span>8 min spacerem</span></div>
+                <div><strong>Przystanek tramwajowy</strong><span>3 min spacerem</span></div>
+                <div><strong>Szkoła podstawowa</strong><span>5 min spacerem</span></div>
+                <div><strong>Sklepy i usługi</strong><span>4 min spacerem</span></div>
+              </div>
+              <div className="locationPhoto">
+                <Image src="/media/aerial-evening.webp" alt="Lokalizacja Monterra Residence w Poznaniu" fill sizes="60vw" className="storyImage" />
+                <div className="locationPhotoShade" />
+                <div className="locationPinCard"><span>POZNAŃ</span><strong>Monterra Residence</strong><small>7 min od centrum</small></div>
+              </div>
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className="shell section" id="postep">
+            <div className="sectionHeading splitHeading"><div><span className="eyebrow">POSTĘP PRAC</span><h2>Od gruntu do odbioru</h2></div>{constructionUpdates[0] && <div className="progressNow"><strong>{constructionUpdates[0].progress}%</strong><span>{constructionUpdates[0].title}</span></div>}</div>
+            <div className="timeline">
+              {[['✓','Zakup gruntu','Q1 2024'],['✓','Projekt','Q2 2024'],['✓','Pozwolenie','Q3 2024'],['●','Rozpoczęcie budowy','Q1 2025'],['○','Stan surowy','Q4 2026'],['○','Wykończenie','Q2 2027'],['○','Odbiory','Q2 2028']].map(([icon,name,date], i) => (
+                <div className={i <= 3 ? "timelineStep done" : "timelineStep"} key={name}><span>{icon}</span><strong>{name}</strong><small>{date}</small></div>
+              ))}
+            </div>
+            {constructionUpdates.length > 0 && <div className="constructionFeed">{constructionUpdates.slice(0,3).map((update) => <article key={update.id}><div className="constructionFeedProgress">{update.progress}%</div><div><strong>{update.title}</strong><p>{update.body}</p><small>{new Date(update.publishedAt).toLocaleDateString('pl-PL')}</small></div></article>)}</div>}
+          </section>
+        </Reveal>
 
         <section className="contactBand" id="kontakt">
           <div className="shell contactGrid">

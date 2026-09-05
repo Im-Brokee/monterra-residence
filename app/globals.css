@@ -1204,3 +1204,216 @@ h1, h2, h3, h4,
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== Monterra v4 — real media + premium motion ===== */
+.revealBlock {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+}
+.revealBlock.isVisible { opacity: 1; transform: translate3d(0,0,0); }
+.featureGrid > .revealBlock,
+.homeGrid > .revealBlock { height: 100%; }
+.featureGrid > .revealBlock > .featureCard,
+.homeGrid > .revealBlock > .apartmentCard { height: 100%; }
+
+.heroRealEstate { min-height: 790px; background: #111; }
+.heroImageWrap { position:absolute; inset:0; overflow:hidden; }
+.heroRealImage {
+  object-fit: cover;
+  object-position: center 55%;
+  transform: scale(1.035);
+  animation: heroKenBurns 18s ease-in-out infinite alternate;
+}
+.heroRealShade {
+  position:absolute; inset:0;
+  background:
+    linear-gradient(90deg, rgba(8,10,12,.86) 0%, rgba(8,10,12,.74) 28%, rgba(8,10,12,.35) 55%, rgba(8,10,12,.08) 80%),
+    linear-gradient(180deg, rgba(4,5,7,.24), rgba(4,5,7,.06) 58%, rgba(4,5,7,.42));
+}
+.heroLightSweep {
+  position:absolute; inset:-40% -20%; pointer-events:none;
+  background: linear-gradient(115deg, transparent 34%, rgba(255,231,184,.11) 48%, transparent 61%);
+  transform: translateX(-25%);
+  animation: lightSweep 12s ease-in-out infinite;
+}
+.heroContentReal { max-width: 670px; padding-top: 118px; }
+.heroContentReal h1 { font-size: clamp(70px, 7.6vw, 112px); line-height:.82; margin:20px 0 18px; max-width: 640px; }
+.heroContentReal h2 { font-size: clamp(34px, 3.6vw, 54px); margin:0 0 16px; color:#d7ae70; }
+.heroContentReal p { max-width:590px; }
+.heroSideWords {
+  position:absolute; z-index:4; right:36px; top:50%; transform:translateY(-45%);
+  display:grid; gap:18px; color:rgba(255,255,255,.66); font-size:10px; font-weight:700;
+  letter-spacing:.24em; text-align:right;
+}
+.premiumStatStrip { background: rgba(18,20,22,.92); color:white; border-color:rgba(255,255,255,.08); box-shadow:0 30px 70px rgba(0,0,0,.18); }
+.premiumStatStrip div { border-right-color:rgba(255,255,255,.13); }
+.premiumStatStrip span { color:rgba(255,255,255,.58); }
+.premiumStatStrip strong { color:#fff; }
+
+.imageStorySection { padding-top: 46px; }
+.storyGrid { display:grid; grid-template-columns: 1.65fr .85fr; gap:18px; }
+.storyCard {
+  position:relative; min-height:520px; margin:0; border-radius:28px; overflow:hidden;
+  border:1px solid rgba(226,215,197,.82); background:#252525; box-shadow:0 24px 70px rgba(44,34,22,.12);
+}
+.storyCard:not(.storyWide) { min-height:520px; }
+.storyImage { object-fit:cover; transition:transform .75s cubic-bezier(.2,.7,.2,1), filter .5s ease; }
+.storyCard:hover .storyImage,
+.interiorMosaic > div:hover .storyImage,
+.apartmentInteriorGallery figure:hover .storyImage,
+.locationPhoto:hover .storyImage,
+.apartmentPhoto:hover .apartmentPhotoImage { transform:scale(1.045); }
+.storyCard::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 55%,rgba(8,9,10,.72)); pointer-events:none; }
+.storyCard figcaption {
+  position:absolute; z-index:3; left:24px; right:24px; bottom:22px; color:white; display:flex; align-items:center; gap:14px;
+}
+.storyCard figcaption > span { width:38px; height:38px; border-radius:50%; border:1px solid rgba(255,255,255,.45); display:grid; place-items:center; font-size:10px; }
+.storyCard figcaption > div { display:flex; flex-direction:column; gap:3px; }
+.storyCard figcaption strong { font-family:var(--font-display),Georgia,serif; font-size:25px; font-weight:500; }
+.storyCard figcaption small { color:rgba(255,255,255,.68); }
+
+.premiumBuildingSelector { grid-template-columns: 250px 1fr 72px; }
+.realBuildingVisual { position:relative; min-height:510px; align-items:stretch; }
+.realBuildingImage { object-fit:cover; object-position:center; transition:transform .8s cubic-bezier(.2,.7,.2,1); }
+.realBuildingVisual:hover .realBuildingImage { transform:scale(1.025); }
+.buildingVisualGradient { position:absolute; inset:0; z-index:1; background:linear-gradient(90deg,rgba(12,13,14,.08),transparent 35%,rgba(12,13,14,.28)); pointer-events:none; }
+.floorOverlayStack {
+  position:absolute; z-index:4; top:11%; right:4%; bottom:16%; width:46%; display:flex; flex-direction:column; justify-content:space-between; gap:4px;
+}
+.facadeFloorButton {
+  min-height:44px; display:grid; grid-template-columns:34px 1fr auto; align-items:center; gap:9px;
+  border:1px solid rgba(255,255,255,.2); background:rgba(18,20,21,.28); backdrop-filter:blur(6px);
+  border-radius:9px; color:white; padding:7px 10px; opacity:.72; transition:.22s ease; box-shadow:0 8px 22px rgba(0,0,0,.08);
+}
+.facadeFloorButton:hover,
+.facadeFloorButton.active { opacity:1; transform:translateX(-6px); background:rgba(176,134,72,.9); border-color:rgba(255,235,202,.72); }
+.facadeFloorNumber { font-family:var(--font-display),Georgia,serif; font-size:21px; }
+.facadeFloorLine { height:1px; background:rgba(255,255,255,.42); }
+.facadeFloorCount { font-size:9px; font-weight:700; white-space:nowrap; }
+.buildingVisualLabel {
+  position:absolute; z-index:5; left:20px; bottom:18px; display:flex; flex-direction:column; gap:3px; padding:12px 15px;
+  border-radius:12px; background:rgba(13,15,16,.7); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.12); color:white;
+}
+.buildingVisualLabel span { font-size:8px; letter-spacing:.2em; color:#d7b47f; }
+.buildingVisualLabel strong { font-family:var(--font-display),Georgia,serif; font-size:22px; }
+
+.premiumApartmentCard { padding:0; }
+.premiumApartmentCard .overlayTop { position:absolute; z-index:5; top:14px; left:14px; right:14px; }
+.premiumApartmentCard .unitCode { color:white; background:rgba(20,21,22,.56); border:1px solid rgba(255,255,255,.2); border-radius:999px; padding:6px 9px; backdrop-filter:blur(8px); }
+.apartmentVisualLink { display:block; }
+.apartmentPhoto { position:relative; min-height:245px; overflow:hidden; background:#222; }
+.apartmentPhotoImage { object-fit:cover; transition:transform .65s cubic-bezier(.2,.7,.2,1); }
+.apartmentPhotoShade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.24),transparent 36%,rgba(0,0,0,.08)); }
+.premiumApartmentCard .styleBadge { top:auto; left:14px; bottom:14px; background:rgba(255,252,247,.94); }
+.miniPlanFloating {
+  position:absolute; right:12px; bottom:12px; width:84px; height:68px; border-radius:10px; padding:5px; overflow:hidden;
+  background:rgba(255,255,255,.94); border:1px solid rgba(255,255,255,.72); box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+.miniPlanFloating img { width:100%; height:100%; object-fit:contain; }
+.apartmentCardBody { padding:17px 18px 18px; }
+
+.premiumExperiencePromo { padding:108px 0; }
+.interiorMosaic { display:grid; grid-template-columns:1.18fr .82fr; grid-template-rows:1fr 1fr; gap:10px; min-height:520px; }
+.interiorMosaic > div { position:relative; overflow:hidden; border-radius:20px; border:1px solid rgba(255,255,255,.08); }
+.interiorMain { grid-row:1 / 3; }
+
+.premiumLocationGrid { grid-template-columns:.72fr 1.28fr; }
+.locationPhoto { position:relative; min-height:430px; border-radius:28px; overflow:hidden; box-shadow:0 28px 70px rgba(45,34,21,.12); }
+.locationPhotoShade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(10,12,14,.04),rgba(10,12,14,.52)); }
+.locationPinCard {
+  position:absolute; left:24px; bottom:24px; z-index:3; min-width:220px; padding:16px 18px; border-radius:16px;
+  background:rgba(19,21,22,.78); backdrop-filter:blur(12px); color:white; border:1px solid rgba(255,255,255,.13); display:flex; flex-direction:column; gap:4px;
+}
+.locationPinCard span { font-size:9px; letter-spacing:.18em; color:#d7b47d; }
+.locationPinCard strong { font-family:var(--font-display),Georgia,serif; font-size:25px; }
+.locationPinCard small { color:rgba(255,255,255,.67); }
+
+.apartmentsPhotoHero { position:relative; overflow:hidden; background:#101114; }
+.apartmentsHeroImage { object-fit:cover; object-position:center 55%; animation:heroKenBurns 22s ease-in-out infinite alternate; }
+.apartmentsHeroShade { position:absolute; inset:0; z-index:1; background:linear-gradient(90deg,rgba(10,12,14,.82),rgba(10,12,14,.5) 52%,rgba(10,12,14,.18)); }
+.apartmentsPhotoHero .compactHeroInner { z-index:2; }
+.apartmentsPhotoHero::after { display:none; }
+
+.premiumApartmentHero { position:relative; min-height:690px; color:white; overflow:hidden; background:#151618; }
+.apartmentHeroBackdrop { position:absolute; inset:0; }
+.apartmentHeroImage { object-fit:cover; object-position:center; animation:heroKenBurns 20s ease-in-out infinite alternate; }
+.apartmentHeroShade { position:absolute; inset:0; background:linear-gradient(90deg,rgba(8,10,11,.72),rgba(8,10,11,.2) 58%,rgba(8,10,11,.56)); }
+.premiumApartmentHero .apartmentHeroGrid { position:relative; z-index:2; min-height:690px; align-items:center; }
+.premiumHeroVisual { background:transparent; min-height:440px; display:flex; align-items:flex-end; }
+.heroPlanGlass {
+  width:min(390px,92%); background:rgba(255,253,249,.9); border:1px solid rgba(255,255,255,.5); border-radius:22px; padding:12px;
+  box-shadow:0 28px 70px rgba(0,0,0,.24); backdrop-filter:blur(14px); color:#222;
+}
+.heroPlanGlass img { width:100%; max-height:300px; object-fit:contain; border-radius:14px; }
+.heroPlanGlass span { display:block; padding:8px 6px 2px; font-size:11px; font-weight:700; color:#7a6b58; }
+.premiumHeroInfo { padding:30px; border-radius:28px; background:rgba(18,20,21,.52); border:1px solid rgba(255,255,255,.12); backdrop-filter:blur(14px); box-shadow:0 28px 70px rgba(0,0,0,.16); }
+.premiumHeroInfo h1 { color:white; font-size:clamp(58px,6vw,82px); }
+.premiumHeroInfo .styleName, .premiumHeroInfo .metricGrid span, .premiumHeroInfo .heroPrice > span, .premiumHeroInfo .heroPrice small { color:rgba(255,255,255,.64); }
+.premiumMetricGrid { border-color:rgba(255,255,255,.12); }
+.premiumMetricGrid > div { border-color:rgba(255,255,255,.12); }
+.premiumMetricGrid strong { color:white; }
+.premiumHeroPrice { border-color:rgba(255,255,255,.16); }
+.premiumHeroPrice strong { color:white; }
+.lightBackLink { color:#e1bd84; }
+.apartmentInteriorGallery { display:grid; grid-template-columns:1.35fr .825fr .825fr; gap:12px; margin:26px 0 36px; }
+.apartmentInteriorGallery figure { position:relative; margin:0; min-height:270px; border-radius:20px; overflow:hidden; border:1px solid var(--line); box-shadow:0 18px 48px rgba(50,39,25,.08); }
+.apartmentInteriorGallery figcaption { position:absolute; left:14px; bottom:14px; z-index:3; padding:8px 11px; border-radius:999px; background:rgba(18,20,21,.7); backdrop-filter:blur(8px); color:white; font-size:11px; }
+.similarImageWrap { position:relative; width:140px; min-height:110px; border-radius:10px; overflow:hidden; }
+.similarCard > img { display:none; }
+
+@keyframes heroKenBurns {
+  from { transform:scale(1.025) translate3d(0,0,0); }
+  to { transform:scale(1.085) translate3d(-1.2%, -1%, 0); }
+}
+@keyframes lightSweep {
+  0%, 20% { transform:translateX(-28%); opacity:0; }
+  45% { opacity:1; }
+  70%, 100% { transform:translateX(30%); opacity:0; }
+}
+
+@media (max-width:1100px) {
+  .heroSideWords { display:none; }
+  .storyGrid { grid-template-columns:1fr; }
+  .storyCard, .storyCard:not(.storyWide) { min-height:440px; }
+  .premiumBuildingSelector { grid-template-columns:220px 1fr; }
+  .premiumBuildingSelector .premiumFloorRail { display:none; }
+  .floorOverlayStack { width:54%; }
+  .apartmentInteriorGallery { grid-template-columns:1fr 1fr; }
+  .apartmentInteriorGallery figure:first-child { grid-column:1/-1; min-height:390px; }
+}
+
+@media (max-width:760px) {
+  .revealBlock { transform:translate3d(0,18px,0); }
+  .heroRealEstate { min-height:720px; }
+  .heroRealImage { object-position:62% center; }
+  .heroRealShade { background:linear-gradient(180deg,rgba(7,9,10,.3),rgba(7,9,10,.72) 48%,rgba(7,9,10,.88)); }
+  .heroContentReal { padding-top:270px; }
+  .heroContentReal h1 { font-size:58px; line-height:.88; }
+  .heroContentReal h2 { font-size:34px; }
+  .premiumStatStrip { margin-top:-34px; }
+  .storyCard, .storyCard:not(.storyWide) { min-height:360px; }
+  .premiumBuildingSelector { grid-template-columns:1fr; }
+  .realBuildingVisual { min-height:420px; }
+  .floorOverlayStack { left:12px; right:12px; top:auto; bottom:18px; width:auto; height:190px; overflow:auto; justify-content:flex-start; }
+  .facadeFloorButton { flex:none; min-height:38px; }
+  .buildingVisualLabel { display:none; }
+  .apartmentPhoto { min-height:260px; }
+  .interiorMosaic { grid-template-columns:1fr; grid-template-rows:320px 220px 220px; }
+  .interiorMain { grid-row:auto; }
+  .premiumLocationGrid { grid-template-columns:1fr; }
+  .locationPhoto { min-height:350px; }
+  .premiumApartmentHero { min-height:760px; }
+  .premiumApartmentHero .apartmentHeroGrid { min-height:760px; grid-template-columns:1fr; padding-top:60px; padding-bottom:40px; }
+  .premiumHeroVisual { min-height:260px; }
+  .premiumHeroInfo { padding:22px; }
+  .apartmentInteriorGallery { grid-template-columns:1fr; }
+  .apartmentInteriorGallery figure:first-child { grid-column:auto; min-height:280px; }
+  .apartmentInteriorGallery figure { min-height:250px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroRealImage, .apartmentsHeroImage, .apartmentHeroImage, .heroLightSweep { animation:none !important; }
+  .revealBlock { opacity:1 !important; transform:none !important; }
+}

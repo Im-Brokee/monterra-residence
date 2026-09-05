@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { Apartment } from "@/lib/types";
@@ -23,11 +24,11 @@ export function BuildingSelector({ apartments }: { apartments: Apartment[] }) {
   }
 
   return (
-    <section className="buildingSelector cardSoft">
+    <section className="buildingSelector premiumBuildingSelector cardSoft">
       <div className="buildingInfo">
         <span className="eyebrow">INTERAKTYWNY WYBÓR</span>
         <h2>Wybierz budynek i piętro</h2>
-        <p>Kolory odpowiadają rzeczywistym statusom lokali z bazy. Kliknij piętro, potem konkretny lokal.</p>
+        <p>Wybierz piętro bezpośrednio na wizualizacji inwestycji. Statusy lokali pobierane są z bazy Supabase.</p>
         <div className="buildingTabs">
           {buildings.map((item) => (
             <button key={item} className={`buildingTab ${building === item ? "active" : ""}`} onClick={() => chooseBuilding(item)}>{item}</button>
@@ -44,29 +45,41 @@ export function BuildingSelector({ apartments }: { apartments: Apartment[] }) {
         </div>
       </div>
 
-      <div className="buildingVisual" aria-label="Wizualizacja budynku">
-        <div className="buildingSky" />
-        <div className="buildingBody dynamicBuildingBody">
-          {floorValues.filter((f) => f > 0).map((item) => {
+      <div className="buildingVisual realBuildingVisual" aria-label="Wizualizacja budynku Monterra Residence">
+        <Image
+          src="/media/hero-building.webp"
+          alt="Monterra Residence — wizualizacja inwestycji"
+          fill
+          sizes="(max-width: 760px) 100vw, 70vw"
+          className="realBuildingImage"
+        />
+        <div className="buildingVisualGradient" />
+        <div className="floorOverlayStack">
+          {floorValues.map((item) => {
             const rows = floorStats(item);
+            const available = rows.filter((a) => a.status === "available").length;
+            const reserved = rows.filter((a) => a.status === "reserved").length;
             return (
               <button
                 key={item}
-                className={`buildingFloor ${floor === item ? "selected" : ""}`}
                 onClick={() => setFloor(item)}
-                title={`Piętro ${item}`}
+                className={`facadeFloorButton ${floor === item ? "active" : ""}`}
+                aria-label={`Piętro ${item}`}
               >
-                {(rows.length ? rows : [null, null, null, null]).slice(0, 6).map((unit, index) => (
-                  <span key={unit ? unit.id : index} className={`unit ${unit ? unit.status : "sold"}`} />
-                ))}
+                <span className="facadeFloorNumber">{item === 0 ? "P" : item}</span>
+                <span className="facadeFloorLine" />
+                <span className="facadeFloorCount">{available} wolne{reserved ? ` · ${reserved} rez.` : ""}</span>
               </button>
             );
           })}
-          <button className={`buildingGround ${floor === 0 ? "selected" : ""}`} onClick={() => setFloor(0)}>PARTER</button>
+        </div>
+        <div className="buildingVisualLabel">
+          <span>MON TERRA RESIDENCE</span>
+          <strong>Budynek {building}</strong>
         </div>
       </div>
 
-      <div className="floorRail">
+      <div className="floorRail premiumFloorRail">
         <span>Piętro</span>
         {floorValues.map((item) => {
           const rows = floorStats(item);

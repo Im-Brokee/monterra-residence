@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ApartmentCatalog } from "@/components/ApartmentCatalog";
@@ -13,7 +14,9 @@ export default async function ApartmentsPage({ searchParams }: { searchParams: P
     <>
       <Header />
       <main>
-        <section className="pageHero compactHero">
+        <section className="pageHero compactHero apartmentsPhotoHero">
+          <Image src="/media/aerial-evening.webp" alt="Monterra Residence wieczorem" fill priority sizes="100vw" className="apartmentsHeroImage" />
+          <div className="apartmentsHeroShade" />
           <div className="shell compactHeroInner">
             <div>
               <span className="eyebrow light">MON TERRA RESIDENCE</span>
