@@ -14,11 +14,11 @@ const presetByStyle: Record<string, ApartmentVisuals> = {
     gallery: {
       living: "/media/variants/studio-urban.webp",
       bedroom: "/media/variants/soft-minimal.webp",
-      bathroom: "/media/variants/bath-spa.webp"
+      bathroom: "/media/variants/bath-soft.webp"
     },
     tourRooms: [
       { id: "living", name: "Salon z kuchnią", image: "/media/variants/studio-urban.webp" },
-      { id: "bathroom", name: "Łazienka", image: "/media/variants/bath-spa.webp" }
+      { id: "bathroom", name: "Łazienka", image: "/media/variants/bath-soft.webp" }
     ]
   },
   "Soft Minimal": {

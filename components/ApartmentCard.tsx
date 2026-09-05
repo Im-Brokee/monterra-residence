@@ -24,7 +24,10 @@ export function ApartmentCard({ apartment }: { apartment: Apartment }) {
             className="apartmentPhotoImage"
           />
           <div className="apartmentPhotoShade" />
-          <span className="styleBadge">{apartment.styleName}</span>
+          <div className="apartmentPhotoMeta">
+            <span className="styleBadge">{apartment.styleName}</span>
+            <span className="planBadge">plan 2D + widok 3D</span>
+          </div>
           <div className="miniPlanFloating">
             <img src={apartment.floorplanUrl} alt={`Rzut ${apartment.unitNumber}`} loading="lazy" decoding="async" />
           </div>
@@ -32,9 +35,9 @@ export function ApartmentCard({ apartment }: { apartment: Apartment }) {
       </Link>
 
       <div className="apartmentCardBody">
-        <div className="apartmentMetrics">
+        <div className="apartmentMetrics premiumMetrics">
           <strong>{formatArea(apartment.area)}</strong>
-          <span>{apartment.rooms} {apartment.rooms === 1 ? "pokój" : "pokoje"}</span>
+          <span>{apartment.rooms} {apartment.rooms === 1 ? "pokój" : apartment.rooms < 5 ? "pokoje" : "pokoi"}</span>
           <span>Piętro {apartment.floor}</span>
           <span>{balconyLabel[apartment.balconyType]} {apartment.balconyArea ? formatArea(apartment.balconyArea) : ""}</span>
         </div>

@@ -1,82 +1,121 @@
 import type { PriceHistoryEntry } from "@/lib/types";
 import { formatPln } from "@/lib/format";
 
+function formatDate(date: string) {
+  return new Intl.DateTimeFormat("pl-PL", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  }).format(new Date(date));
+}
+
+function formatMonth(date: string) {
+  return new Intl.DateTimeFormat("pl-PL", {
+    month: "short",
+    year: "2-digit"
+  }).format(new Date(date));
+}
+
 export function PriceHistory({ history }: { history: PriceHistoryEntry[] }) {
   if (!history.length) {
     return <div className="priceHistoryEmpty">Historia ceny pojawi się po pierwszej aktualizacji.</div>;
   }
 
-  const values = history.map((entry) => entry.newPrice);
+  const recent = history.slice(-6);
+  const latest = recent.at(-1)!;
+  const previous = recent.at(-2) ?? null;
+  const values = recent.map((entry) => entry.newPrice);
   const min = Math.min(...values);
   const max = Math.max(...values);
-  const range = Math.max(1, max - min);
-  const latest = history.at(-1)!;
-  const previous = history.at(-2) ?? null;
-  const diff = previous ? latest.newPrice - previous.newPrice : 0;
-  const diffPercent = previous ? Math.round((diff / previous.newPrice) * 1000) / 10 : 0;
-  const recent = history.slice(-5);
-  const ticks = [min, min + range / 2, max].map((v) => Math.round(v / 1000) * 1000);
+  const range = Math.max(max - min, 1);
+  const absoluteDiff = previous ? latest.newPrice - previous.newPrice : 0;
+  const percentDiff = previous ? (absoluteDiff / previous.newPrice) * 100 : 0;
+  const avg = Math.round(values.reduce((sum, value) => sum + value, 0) / values.length);
 
-  const pointList = recent.map((entry, index) => {
+  const points = recent.map((entry, index) => {
     const x = recent.length === 1 ? 50 : 10 + (index / (recent.length - 1)) * 80;
-    const y = 78 - ((entry.newPrice - min) / range) * 54;
+    const y = 78 - ((entry.newPrice - min) / range) * 56;
     return { x, y, entry };
   });
 
-  const points = pointList.map((item) => `${item.x},${item.y}`).join(" ");
+  const polyline = points.map((point) => `${point.x},${point.y}`).join(" ");
 
   return (
     <div className="priceHistoryPro">
-      <div className="priceHistoryTopline">
-        <div>
+      <div className="priceSnapshotGrid">
+        <div className="snapshotCard">
           <span>Aktualna cena</span>
           <strong>{formatPln(latest.newPrice)}</strong>
+          <small>stan na {formatDate(latest.changedAt)}</small>
         </div>
-        <div>
-          <span>Ostatnia zmiana</span>
-          <strong className={diff >= 0 ? "up" : "down"}>
-            {previous ? `${diff >= 0 ? "+" : ""}${formatPln(diff)}` : "Brak"}
+        <div className="snapshotCard">
+          <span>Zmiana vs poprzednio</span>
+          <strong className={absoluteDiff >= 0 ? "up" : "down"}>
+            {previous ? `${absoluteDiff >= 0 ? "+" : ""}${formatPln(absoluteDiff)}` : "Brak zmian"}
           </strong>
-          {previous ? <small>{diffPercent >= 0 ? "+" : ""}{diffPercent}% vs poprzednio</small> : null}
+          <small>{previous ? `${percentDiff >= 0 ? "+" : ""}${percentDiff.toFixed(1)}%` : "pierwszy zapis"}</small>
+        </div>
+        <div className="snapshotCard">
+          <span>Średnia z historii</span>
+          <strong>{formatPln(avg)}</strong>
+          <small>{recent.length} ostatnich zapisów</small>
         </div>
       </div>
 
-      <div className="priceChartFrame">
+      <div className="priceHistoryChartShell">
         <div className="priceAxisY">
-          {ticks.slice().reverse().map((tick) => (
-            <span key={tick}>{formatPln(tick)}</span>
+          {[max, min + range / 2, min].map((tick, index) => (
+            <span key={index}>{formatPln(Math.round(tick / 1000) * 1000)}</span>
           ))}
         </div>
-        <svg className="priceChartPro" viewBox="0 0 100 100" preserveAspectRatio="none" aria-label="Historia ceny">
-          <line x1="10" y1="24" x2="90" y2="24" className="priceGridLine" />
-          <line x1="10" y1="51" x2="90" y2="51" className="priceGridLine" />
-          <line x1="10" y1="78" x2="90" y2="78" className="priceGridLine" />
-          <polyline points={points} className="priceChartLinePro" />
-          {pointList.map((item) => (
-            <g key={item.entry.id}>
-              <circle cx={item.x} cy={item.y} r="2.3" className="priceChartPointPro" />
-              <text x={item.x} y={item.y - 5} textAnchor="middle" className="priceChartValueLabel">
-                {Math.round(item.entry.newPrice / 1000)}k
-              </text>
-            </g>
-          ))}
-        </svg>
-      </div>
 
-      <div className="priceAxisX">
-        {recent.map((entry) => (
-          <span key={entry.id}>{new Intl.DateTimeFormat("pl-PL", { month: "short", year: "2-digit" }).format(new Date(entry.changedAt))}</span>
-        ))}
-      </div>
+        <div className="priceChartArea">
+          <svg className="priceChartPro" viewBox="0 0 100 100" preserveAspectRatio="none" aria-label="Historia ceny mieszkania">
+            <defs>
+              <linearGradient id="priceAreaFill" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stopColor="#c69758" stopOpacity="0.28" />
+                <stop offset="100%" stopColor="#c69758" stopOpacity="0.03" />
+              </linearGradient>
+            </defs>
+            <line x1="10" y1="22" x2="90" y2="22" className="priceGridLine" />
+            <line x1="10" y1="50" x2="90" y2="50" className="priceGridLine" />
+            <line x1="10" y1="78" x2="90" y2="78" className="priceGridLine" />
+            <path d={`M ${points[0]?.x ?? 10} 78 L ${polyline.replace(/ /g, ' L ')} L ${points.at(-1)?.x ?? 90} 78 Z`} className="priceChartAreaFill" />
+            <polyline points={polyline} className="priceChartLinePro" />
+            {points.map((point) => (
+              <g key={point.entry.id}>
+                <circle cx={point.x} cy={point.y} r="2.3" className="priceChartPointPro" />
+                <text x={point.x} y={point.y - 6} textAnchor="middle" className="priceChartValueLabel">
+                  {Math.round(point.entry.newPrice / 1000)}k
+                </text>
+              </g>
+            ))}
+          </svg>
 
-      <div className="priceHistoryTable">
-        {recent.slice().reverse().map((entry, index) => (
-          <div key={entry.id}>
-            <span>{index === 0 ? "Aktualizacja" : "Poprzednia"}</span>
-            <span>{new Intl.DateTimeFormat("pl-PL", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(entry.changedAt))}</span>
-            <strong>{formatPln(entry.newPrice)}</strong>
+          <div className="priceAxisX">
+            {recent.map((entry) => (
+              <span key={entry.id}>{formatMonth(entry.changedAt)}</span>
+            ))}
           </div>
-        ))}
+        </div>
+      </div>
+
+      <div className="priceHistoryTable detailed">
+        {recent
+          .slice()
+          .reverse()
+          .map((entry, index) => {
+            const next = recent[recent.length - 1 - index + 1] ?? null;
+            const diff = next ? entry.newPrice - next.newPrice : 0;
+            return (
+              <div key={entry.id}>
+                <span>{index === 0 ? "Aktualny zapis" : `Archiwum ${recent.length - index}`}</span>
+                <span>{formatDate(entry.changedAt)}</span>
+                <strong>{formatPln(entry.newPrice)}</strong>
+                <b className={diff >= 0 ? "up" : "down"}>{next ? `${diff >= 0 ? "+" : ""}${formatPln(diff)}` : "—"}</b>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

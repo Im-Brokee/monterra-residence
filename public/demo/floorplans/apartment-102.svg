@@ -1,79 +1,120 @@
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 900">
   <defs>
-    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#b59b74" flood-opacity="0.12"/></filter>
-    <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#faf6ef"/><stop offset="1" stop-color="#f1eadf"/></linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#b59b74" flood-opacity="0.14"/></filter>
+    <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#fbf8f1"/><stop offset="1" stop-color="#efe8dc"/></linearGradient>
   </defs>
   <rect width="100%" height="100%" fill="url(#paper)"/>
   <g filter="url(#softShadow)">
-    <rect x="40" y="40" width="880" height="620" rx="24" fill="#fffdfa" stroke="#d9cfbe" stroke-width="2"/>
-    <text x="80" y="92" font-family="Georgia" font-size="28" fill="#70552f">Luxury Dark</text>
-    <text x="80" y="122" font-family="Arial" font-size="15" letter-spacing="2" fill="#9c835f">PROFESJONALNY RZUT 2D · 102 m² · 4 pokoje</text>
-    <g transform="translate(736 78)">
-      <circle cx="28" cy="28" r="28" fill="#f6efe2" stroke="#d9cfbe"/>
-      <path d="M28 10 L34 28 L28 24 L22 28 Z" fill="#29251f"/>
-      <text x="28" y="52" text-anchor="middle" font-family="Arial" font-size="10" fill="#7b6a56">N</text>
+    <rect x="42" y="42" width="1196" height="816" rx="28" fill="#fffdfa" stroke="#d9cfbe" stroke-width="2"/>
+    <text x="84" y="96" font-family="Georgia, 'Times New Roman', serif" font-size="34" fill="#70552f">Luxury Dark</text>
+    <text x="84" y="128" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="2" fill="#9c835f">PROFESJONALNY RZUT 2D · 102 m² · 4 pokoje</text>
+
+    <g transform="translate(1048 74)">
+      <circle cx="34" cy="34" r="34" fill="#f6efe2" stroke="#d9cfbe"/>
+      <path d="M34 12 L40 32 L34 28 L28 32 Z" fill="#29251f"/>
+      <text x="34" y="61" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="#7b6a56">N</text>
     </g>
-    <rect x="70" y="150" width="750" height="54" rx="16" fill="#e8eee5" stroke="#a8b39f" stroke-width="2"/>
-    <text x="445" y="184" text-anchor="middle" font-family="Arial" font-size="23" fill="#536153">TARAS · 25.8 m²</text>
+
+    <rect x="120" y="126" width="893.6170212765958" height="58" rx="18" fill="#e8eee5" stroke="#a8b39f" stroke-width="2"/>
+    <text x="566.8085106382979" y="163" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="500" fill="#536153">TARAS · 25.8 m²</text>
+
     
-    <g>
-      <rect x="70" y="150" width="420" height="380" fill="#f8f5ef" stroke="#23201c" stroke-width="6"/>
-      <rect x="94" y="370" width="130" height="72" rx="22" fill="#d8cebf"/><rect x="240" y="405" width="82" height="54" rx="12" fill="#e8dfd0"/><rect x="330" y="172" width="118" height="54" rx="12" fill="#cbd7cd"/><circle cx="362" cy="305" r="36" fill="#ebe2d3"/>
-      <text x="280" y="332" text-anchor="middle" font-family="Arial" font-size="26" font-weight="700" fill="#2f2a24">SALON + KUCHNIA</text>
-      <text x="280" y="368" text-anchor="middle" font-family="Arial" font-size="18" fill="#6f675c">40.2 m²</text>
-    </g>
-    <g>
-      <rect x="490" y="150" width="210" height="190" fill="#f3efe7" stroke="#23201c" stroke-width="6"/>
-      <rect x="515" y="238" width="120" height="80" rx="14" fill="#d6ccbf"/><rect x="524" y="227" width="88" height="18" rx="6" fill="#c6baa9"/>
-      <text x="595" y="237" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#2f2a24">MASTER</text>
-      <text x="595" y="273" text-anchor="middle" font-family="Arial" font-size="18" fill="#6f675c">15.2 m²</text>
-    </g>
-    <g>
-      <rect x="700" y="150" width="120" height="190" fill="#f3efe7" stroke="#23201c" stroke-width="6"/>
-      <rect x="725" y="238" width="65" height="80" rx="14" fill="#d6ccbf"/><rect x="734" y="227" width="35" height="18" rx="6" fill="#c6baa9"/>
-      <text x="760" y="237" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#2f2a24">POKÓJ</text>
-      <text x="760" y="273" text-anchor="middle" font-family="Arial" font-size="18" fill="#6f675c">11.6 m²</text>
-    </g>
-    <g>
-      <rect x="490" y="340" width="160" height="190" fill="#eef3ef" stroke="#23201c" stroke-width="6"/>
-      <rect x="526" y="465" width="82" height="38" rx="16" fill="#cdd8d4"/><rect x="580" y="368" width="26" height="80" rx="12" fill="#e0e7e5" stroke="#99a9a4" stroke-width="2"/>
-      <text x="570" y="427" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#2f2a24">ŁAZIENKA</text>
-      <text x="570" y="463" text-anchor="middle" font-family="Arial" font-size="18" fill="#6f675c">7.4 m²</text>
-    </g>
-    <g>
-      <rect x="650" y="340" width="170" height="95" fill="#f2eee7" stroke="#23201c" stroke-width="6"/>
-      <rect x="678" y="375" width="114" height="22" rx="10" fill="#ddd5ca"/><rect x="678" y="410" width="114" height="22" rx="10" fill="#e7ded1"/>
-      <text x="735" y="379.5" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#2f2a24">GARDEROBA</text>
-      <text x="735" y="415.5" text-anchor="middle" font-family="Arial" font-size="18" fill="#6f675c">5.6 m²</text>
-    </g>
-    <g>
-      <rect x="650" y="435" width="170" height="95" fill="#f3efe7" stroke="#23201c" stroke-width="6"/>
-      <rect x="675" y="523" width="115" height="-15" rx="14" fill="#d6ccbf"/><rect x="684" y="512" width="85" height="18" rx="6" fill="#c6baa9"/>
-      <text x="735" y="474.5" text-anchor="middle" font-family="Arial" font-size="21" font-weight="700" fill="#2f2a24">POKÓJ</text>
-      <text x="735" y="510.5" text-anchor="middle" font-family="Arial" font-size="18" fill="#6f675c">10.0 m²</text>
-    </g>
+      <g>
+        <rect x="120" y="190" width="500" height="287.2340425531915" fill="#f7f3eb" stroke="#23201c" stroke-width="6"/>
+        <rect x="148" y="367.2340425531915" width="130" height="72" rx="22" fill="#d8cebf"/>
+<rect x="300" y="392.2340425531915" width="88" height="52" rx="12" fill="#e8dfd0"/>
+<circle cx="430" cy="278" r="38" fill="#ebe2d3"/>
+<rect x="488" y="216" width="104" height="24" rx="10" fill="#cbd7cd"/>
+        <text x="370" y="329.6170212765958" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#2f2a24">SALON + KUCHNIA</text>
+        <text x="370" y="363.6170212765958" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#6f675c">39.8 m²</text>
+      </g>
+
+      <g>
+        <rect x="620" y="190" width="202.12765957446808" height="202.12765957446808" fill="#f1ede5" stroke="#23201c" stroke-width="6"/>
+        <rect x="652" y="228" width="116" height="78" rx="12" fill="#ddd5ca"/>
+<rect x="652" y="228" width="116" height="20" rx="10" fill="#c6bbb0"/>
+        <text x="721.063829787234" y="287.06382978723406" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18.3752417794971" font-weight="700" fill="#2f2a24">MASTER</text>
+        <text x="721.063829787234" y="321.06382978723406" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#6f675c">16.2 m²</text>
+      </g>
+
+      <g>
+        <rect x="822.1276595744681" y="190" width="191.48936170212767" height="202.12765957446808" fill="#f1ede5" stroke="#23201c" stroke-width="6"/>
+        <rect x="858.1276595744681" y="296.1276595744681" width="98" height="58" rx="10" fill="#d4cabd"/>
+<rect x="955.6170212765958" y="228" width="24" height="84" rx="10" fill="#d8d1c8"/>
+        <text x="917.872340425532" y="287.06382978723406" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17.408123791102515" font-weight="700" fill="#2f2a24">POKÓJ</text>
+        <text x="917.872340425532" y="321.06382978723406" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#6f675c">11.3 m²</text>
+      </g>
+
+      <g>
+        <rect x="620" y="392.1276595744681" width="202.12765957446808" height="148.93617021276594" fill="#edf3ef" stroke="#23201c" stroke-width="6"/>
+        <rect x="677.063829787234" y="471.063829787234" width="88" height="40" rx="16" fill="#cdd8d4"/>
+<rect x="752.1276595744681" y="418.1276595744681" width="28" height="84" rx="12" fill="#e0e7e5" stroke="#99a9a4" stroke-width="2"/>
+        <text x="721.063829787234" y="462.5957446808511" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18.3752417794971" font-weight="700" fill="#2f2a24">ŁAZIENKA</text>
+        <text x="721.063829787234" y="496.5957446808511" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#6f675c">7 m²</text>
+      </g>
+
+      <g>
+        <rect x="822.1276595744681" y="392.1276595744681" width="191.48936170212767" height="148.93617021276594" fill="#f1ede5" stroke="#23201c" stroke-width="6"/>
+        <rect x="854.1276595744681" y="430.1276595744681" width="116" height="64.93617021276594" rx="12" fill="#ddd5ca"/>
+<rect x="854.1276595744681" y="430.1276595744681" width="116" height="20" rx="10" fill="#c6bbb0"/>
+        <text x="917.872340425532" y="462.5957446808511" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17.408123791102515" font-weight="700" fill="#2f2a24">POKÓJ</text>
+        <text x="917.872340425532" y="496.5957446808511" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#6f675c">10.1 m²</text>
+      </g>
+
+      <g>
+        <rect x="620" y="541.063829787234" width="170.2127659574468" height="148.93617021276594" fill="#edf3ef" stroke="#23201c" stroke-width="6"/>
+        <rect x="673.1063829787234" y="593.531914893617" width="64" height="44" rx="16" fill="#d7e2de"/>
+        <text x="705.1063829787234" y="611.531914893617" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#2f2a24">WC / PRALNIA</text>
+        <text x="705.1063829787234" y="645.531914893617" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#6f675c">3.1 m²</text>
+      </g>
+
+      <g>
+        <rect x="790.2127659574468" y="541.063829787234" width="223.40425531914894" height="148.93617021276594" fill="#f5f0e8" stroke="#23201c" stroke-width="6"/>
+        <rect x="818.2127659574468" y="571.063829787234" width="124" height="20" rx="10" fill="#ddd5ca"/>
+<rect x="818.2127659574468" y="603.063829787234" width="124" height="20" rx="10" fill="#e7ded1"/>
+        <text x="901.9148936170212" y="611.531914893617" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20.309477756286267" font-weight="700" fill="#2f2a24">HOL</text>
+        <text x="901.9148936170212" y="645.531914893617" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#6f675c">7.5 m²</text>
+      </g>
+
+      <g>
+        <rect x="120" y="477.2340425531915" width="500" height="212.7659574468085" fill="#f7f3eb" stroke="#23201c" stroke-width="6"/>
+        <rect x="290" y="555.6170212765958" width="160" height="56" rx="16" fill="#d8cebf"/>
+<circle cx="274" cy="553.6170212765958" r="12" fill="#e7ded1"/><circle cx="466" cy="553.6170212765958" r="12" fill="#e7ded1"/><circle cx="274" cy="613.6170212765958" r="12" fill="#e7ded1"/><circle cx="466" cy="613.6170212765958" r="12" fill="#e7ded1"/>
+        <text x="370" y="579.6170212765958" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#2f2a24">JADALNIA</text>
+        <text x="370" y="613.6170212765958" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" fill="#6f675c">8 m²</text>
+      </g>
+
+    <line x1="120" y1="720" x2="1013.6170212765958" y2="720" stroke="#a89579" stroke-width="2" stroke-dasharray="6 6"/>
+    <line x1="120" y1="714" x2="120" y2="726" stroke="#a89579" stroke-width="2"/>
+    <line x1="1013.6170212765958" y1="714" x2="1013.6170212765958" y2="726" stroke="#a89579" stroke-width="2"/>
+    <text x="566.8085106382979" y="712" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#8e7552">elewacja frontowa</text>
+
+    <line x1="1110" y1="190" x2="1110" y2="690" stroke="#a89579" stroke-width="2" stroke-dasharray="6 6"/>
+    <line x1="1110" y1="184" x2="1110" y2="196" stroke="#a89579" stroke-width="2"/>
+    <line x1="1110" y1="684" x2="1110" y2="696" stroke="#a89579" stroke-width="2"/>
+    <text x="1128" y="440" dominant-baseline="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#8e7552">układ funkcjonalny</text>
+
     
-  <line x1="70" y1="580" x2="820" y2="580" stroke="#a89579" stroke-width="2" stroke-dasharray="6 6"/>
-  <line x1="70" y1="574" x2="70" y2="586" stroke="#a89579" stroke-width="2"/>
-  <line x1="820" y1="574" x2="820" y2="586" stroke="#a89579" stroke-width="2"/>
-  <text x="445" y="572" text-anchor="middle" dominant-baseline="auto" font-family="Arial" font-size="16" fill="#8e7552">elewacja frontowa</text>
-    
-  <line x1="850" y1="150" x2="850" y2="530" stroke="#a89579" stroke-width="2" stroke-dasharray="6 6"/>
-  <line x1="850" y1="144" x2="850" y2="156" stroke="#a89579" stroke-width="2"/>
-  <line x1="850" y1="524" x2="850" y2="536" stroke="#a89579" stroke-width="2"/>
-  <text x="868" y="340" text-anchor="start" dominant-baseline="middle" font-family="Arial" font-size="16" fill="#8e7552">układ funkcjonalny</text>
-    <g transform="translate(88 602)">
-      <rect width="170" height="28" rx="14" fill="#1f1f1d"/>
-      <circle cx="18" cy="14" r="5" fill="#8aa070"/><text x="32" y="18" font-family="Arial" font-size="13" fill="#f2ede4">strefa dzienna</text>
+    <g transform="translate(92 782)">
+      <rect width="170" height="32" rx="16" fill="#1f1f1d"/>
+      <circle cx="18" cy="16" r="5" fill="#8aa070"/>
+      <text x="32" y="21" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#f2ede4">strefa dzienna</text>
     </g>
-    <g transform="translate(280 602)">
-      <rect width="170" height="28" rx="14" fill="#1f1f1d"/>
-      <circle cx="18" cy="14" r="5" fill="#c9b287"/><text x="32" y="18" font-family="Arial" font-size="13" fill="#f2ede4">strefa prywatna</text>
+  
+
+    <g transform="translate(288 782)">
+      <rect width="170" height="32" rx="16" fill="#1f1f1d"/>
+      <circle cx="18" cy="16" r="5" fill="#c9b287"/>
+      <text x="32" y="21" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#f2ede4">strefa prywatna</text>
     </g>
-    <g transform="translate(472 602)">
-      <rect width="170" height="28" rx="14" fill="#1f1f1d"/>
-      <circle cx="18" cy="14" r="5" fill="#b4c5be"/><text x="32" y="18" font-family="Arial" font-size="13" fill="#f2ede4">łazienka / wellness</text>
+  
+
+    <g transform="translate(484 782)">
+      <rect width="170" height="32" rx="16" fill="#1f1f1d"/>
+      <circle cx="18" cy="16" r="5" fill="#b4c5be"/>
+      <text x="32" y="21" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#f2ede4">łazienka / komunikacja</text>
     </g>
+  
   </g>
 </svg>

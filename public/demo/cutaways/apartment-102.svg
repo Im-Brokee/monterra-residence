@@ -1,66 +1,88 @@
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820">
   <defs>
-    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#1d1f1f"/><stop offset="1" stop-color="#34312d"/></linearGradient>
-    <linearGradient id="glow" x1="0" x2="1"><stop stop-color="#d3a862" stop-opacity="0.0"/><stop offset="0.5" stop-color="#d3a862" stop-opacity="0.18"/><stop offset="1" stop-color="#d3a862" stop-opacity="0.0"/></linearGradient>
-    <filter id="shadow"><feDropShadow dx="0" dy="24" stdDeviation="18" flood-opacity="0.3"/></filter>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#1b1d1f"/><stop offset="1" stop-color="#332f2a"/></linearGradient>
+    <linearGradient id="glow" x1="0" x2="1"><stop stop-color="#d3a862" stop-opacity="0"/><stop offset="0.5" stop-color="#d3a862" stop-opacity="0.18"/><stop offset="1" stop-color="#d3a862" stop-opacity="0"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="26" stdDeviation="18" flood-opacity="0.28"/></filter>
   </defs>
   <rect width="100%" height="100%" fill="url(#bg)"/>
-  <rect x="0" y="0" width="1000" height="700" fill="url(#glow)"/>
+  <rect width="100%" height="100%" fill="url(#glow)"/>
   <g filter="url(#shadow)">
-    <path d="M220 542 L500 382 L790 520 L510 670 Z" fill="#ece4d8" stroke="#faf6ef" stroke-width="18" stroke-linejoin="round"/>
+    <polygon points="-165.8,444.7 514.7,615.7 682.4,856.5 -51.7,586.7" fill="#ece4d8" stroke="#faf6ef" stroke-width="18" stroke-linejoin="round"/>
     
       <g>
-        <polygon points="297.23199999999997,240.608 521.344,367.28 521.344,421.28 297.23199999999997,294.608" fill="#b7bdb4" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="724.112,252.67200000000003 521.344,367.28 521.344,421.28 724.112,306.672" fill="#a1a69e" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="500,126 724.112,252.67200000000003 521.344,367.28 297.23199999999997,240.608" fill="#dfe7dc" stroke="#56514a" stroke-width="3"/>
-        <polygon points="454,177.04 514.72,211.36 466.88,238.39999999999998 406.15999999999997,204.07999999999998" fill="#7b7266"/>
-        <text x="510.672" y="242.64" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#332c23">SALON + KUCHNIA</text>
+        <polygon points="320.0,220.0 101.2,334.2 101.2,272.2 320.0,158.0" fill="#b9beb6" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="700.9,418.7 482.1,532.9 482.1,470.9 700.9,356.7" fill="#9fa59c" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="320.0,158.0 700.9,356.7 482.1,470.9 101.2,272.2" fill="#dfe7dc" stroke="#56514a" stroke-width="3"/>
+        <polygon points="187.7,294.1 288.9,346.9 250.2,367.1 149.0,314.3" fill="#cec2b3" opacity="0.9"/>
+<polygon points="566.6,355.6 645.7,396.9 627.3,406.5 548.2,365.2" fill="#c5d0c7" opacity="0.9"/>
+        <text x="401.0" y="316.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#332c23">SALON + KUCHNIA</text>
       </g>
+
       <g>
-        <polygon points="622.7280000000001,309.976 734.784,373.312 734.784,427.312 622.7280000000001,363.976" fill="#b7b0a6" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="836.168,316.008 734.784,373.312 734.784,427.312 836.168,370.008" fill="#a19b92" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="724.112,252.67200000000003 836.168,316.008 734.784,373.312 622.7280000000001,309.976" fill="#dfd7cb" stroke="#56514a" stroke-width="3"/>
-        <polygon points="716.7520000000001,290.192 784.8320000000001,328.672 733.312,357.79200000000003 665.232,319.312" fill="#bfb3a1"/>
-        <text x="729.448" y="308.992" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#332c23">MASTER</text>
+        <polygon points="700.9,418.7 546.9,499.1 546.9,437.1 700.9,356.7" fill="#b8b1a7" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="854.9,499.1 700.9,579.4 700.9,517.4 854.9,437.1" fill="#9e978e" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="700.9,356.7 854.9,437.1 700.9,517.4 546.9,437.1" fill="#e3ded0" stroke="#56514a" stroke-width="3"/>
+        <polygon points="700.9,423.8 792.9,471.8 735.9,501.5 643.9,453.5" fill="#d8cdc1" opacity="0.9"/>
+        <text x="700.9" y="439.1" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#332c23">MASTER</text>
       </g>
+
       <g>
-        <polygon points="734.784,373.312 798.816,409.504 798.816,463.504 734.784,427.312" fill="#b7b0a6" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="900.2,352.20000000000005 798.816,409.504 798.816,463.504 900.2,406.20000000000005" fill="#a19b92" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="836.168,316.008 900.2,352.20000000000005 798.816,409.504 734.784,373.312" fill="#dfd7cb" stroke="#56514a" stroke-width="3"/>
-        <polygon points="828.808,353.528 896.8879999999999,392.008 845.3679999999999,421.128 777.288,382.648" fill="#bfb3a1"/>
-        <text x="817.492" y="358.756" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#332c23">POKÓJ</text>
+        <polygon points="854.9,499.1 700.9,579.4 700.9,517.4 854.9,437.1" fill="#b8b1a7" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="1000.8,575.2 846.8,655.5 846.8,593.5 1000.8,513.2" fill="#9e978e" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="854.9,437.1 1000.8,513.2 846.8,593.5 700.9,517.4" fill="#e3ded0" stroke="#56514a" stroke-width="3"/>
+        <polygon points="778.2,546.1 859.2,588.3 827.9,604.6 746.9,562.4" fill="#d4cabd" opacity="0.9"/>
+        <text x="850.9" y="517.3" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19.82142857142857" font-weight="700" fill="#332c23">POKÓJ</text>
       </g>
+
       <g>
-        <polygon points="521.344,367.28 606.72,415.536 606.72,469.536 521.344,421.28" fill="#a5b2af" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="708.104,358.23199999999997 606.72,415.536 606.72,469.536 708.104,412.23199999999997" fill="#919c9a" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="622.7280000000001,309.976 708.104,358.23199999999997 606.72,415.536 521.344,367.28" fill="#c9d9d6" stroke="#56514a" stroke-width="3"/>
-        <polygon points="583.904,359.04 629.904,385.04 609.664,396.48 563.664,370.48" fill="#edf3f0"/>
-        <text x="614.724" y="358.756" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#332c23">ŁAZIENKA</text>
+        <polygon points="546.9,499.1 433.5,558.3 433.5,496.3 546.9,437.1" fill="#aeb9b4" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="700.9,579.4 587.5,638.6 587.5,576.6 700.9,517.4" fill="#95a09b" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="546.9,437.1 700.9,517.4 587.5,576.6 433.5,496.3" fill="#d3e0db" stroke="#56514a" stroke-width="3"/>
+        <polygon points="525.2,538.2 591.4,572.8 565.7,586.2 499.4,551.7" fill="#d5e0db" opacity="0.9"/>
+        <text x="567.2" y="508.9" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#332c23">ŁAZIENKA</text>
       </g>
+
       <g>
-        <polygon points="657.412,386.88399999999996 748.124,438.156 748.124,492.156 657.412,440.88399999999996" fill="#b1aca4" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="798.816,409.504 748.124,438.156 748.124,492.156 798.816,463.504" fill="#9c9790" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="708.104,358.23199999999997 798.816,409.504 748.124,438.156 657.412,386.88399999999996" fill="#d8d2c8" stroke="#56514a" stroke-width="3"/>
+        <polygon points="700.9,579.4 587.5,638.6 587.5,576.6 700.9,517.4" fill="#b8b1a7" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="846.8,655.5 733.3,714.7 733.3,652.7 846.8,593.5" fill="#9e978e" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="700.9,517.4 846.8,593.5 733.3,652.7 587.5,576.6" fill="#e3ded0" stroke="#56514a" stroke-width="3"/>
+        <polygon points="700.9,584.5 792.9,632.5 735.9,662.2 643.9,614.2" fill="#d8cdc1" opacity="0.9"/>
+        <text x="717.1" y="587.1" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19.82142857142857" font-weight="700" fill="#332c23">POKÓJ</text>
+      </g>
+
+      <g>
+        <polygon points="433.5,558.3 320.0,617.5 320.0,555.5 433.5,496.3" fill="#aeb9b4" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="563.1,625.9 449.7,685.1 449.7,623.1 563.1,563.9" fill="#95a09b" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="433.5,496.3 563.1,563.9 449.7,623.1 320.0,555.5" fill="#d3e0db" stroke="#56514a" stroke-width="3"/>
         
-        <text x="728.114" y="394.194" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#332c23">GARDEROBA</text>
+        <text x="441.6" y="561.7" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17.61904761904762" font-weight="700" fill="#332c23">WC / PRALNIA</text>
       </g>
+
       <g>
-        <polygon points="606.72,415.536 697.432,466.808 697.432,520.808 606.72,469.536" fill="#b7b0a6" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="748.124,438.156 697.432,466.808 697.432,520.808 748.124,492.156" fill="#a19b92" stroke="#5b544b" stroke-width="2.8"/>
-        <polygon points="657.412,386.88399999999996 748.124,438.156 697.432,466.808 606.72,415.536" fill="#dfd7cb" stroke="#56514a" stroke-width="3"/>
-        <polygon points="650.052,424.404 718.1320000000001,462.884 666.6120000000001,492.0039999999999 598.532,453.524" fill="#bfb3a1"/>
-        <text x="677.422" y="422.846" text-anchor="middle" font-family="Arial" font-size="14" font-weight="700" fill="#332c23">POKÓJ</text>
+        <polygon points="563.1,625.9 449.7,685.1 449.7,623.1 563.1,563.9" fill="#b1aca4" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="733.3,714.7 619.9,773.9 619.9,711.9 733.3,652.7" fill="#9b968f" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="563.1,563.9 733.3,652.7 619.9,711.9 449.7,623.1" fill="#d8d2c8" stroke="#56514a" stroke-width="3"/>
+        
+        <text x="591.5" y="639.9" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#332c23">HOL</text>
       </g>
-    <path d="M220 542 L500 382 L790 520" fill="none" stroke="#faf6ef" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <g>
+        <polygon points="101.2,334.2 -60.9,418.7 -60.9,356.7 101.2,272.2" fill="#b9beb6" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="482.1,532.9 320.0,617.5 320.0,555.5 482.1,470.9" fill="#9fa59c" stroke="#5b544b" stroke-width="2.8"/>
+        <polygon points="101.2,272.2 482.1,470.9 320.0,555.5 -60.9,356.7" fill="#dfe7dc" stroke="#56514a" stroke-width="3"/>
+        <polygon points="184.8,425.2 273.1,471.3 236.3,490.5 148.0,444.4" fill="#d7cdbf" opacity="0.9"/>
+        <text x="210.6" y="415.8" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#332c23">JADALNIA</text>
+      </g>
+    <path d="M -165.8 444.7 L 514.7 615.7 L 682.4 856.5" fill="none" stroke="#faf6ef" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <g>
-    <rect x="34" y="32" width="220" height="88" rx="24" fill="#282724" fill-opacity="0.75" stroke="#57524a"/>
-    <text x="56" y="70" font-family="Georgia" font-size="26" fill="#f4e9d7">Luxury Dark</text>
-    <text x="56" y="99" font-family="Arial" font-size="18" fill="#d6b178">102 m² · 4 pokoje</text>
-    <rect x="825" y="40" width="122" height="122" rx="61" fill="#ca9d56"/>
-    <text x="886" y="112" text-anchor="middle" font-family="Arial" font-size="38" font-weight="700" fill="#fff">3D</text>
-    <rect x="362" y="34" width="278" height="36" rx="18" fill="#111" fill-opacity="0.54" stroke="#3a3732"/>
-    <text x="501" y="58" text-anchor="middle" font-family="Arial" font-size="18" letter-spacing="1.2" fill="#ece1d1">PRZECIĄGNIJ, ABY OBRÓCIĆ</text>
+    <rect x="34" y="32" width="280" height="92" rx="24" fill="#282724" fill-opacity="0.78" stroke="#57524a"/>
+    <text x="58" y="72" font-family="Georgia, 'Times New Roman', serif" font-size="30" fill="#f4e9d7">Luxury Dark</text>
+    <text x="58" y="103" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#d6b178">102 m² · 4 pokoje</text>
+    <rect x="1010" y="42" width="126" height="126" rx="63" fill="#ca9d56"/>
+    <text x="1073" y="117" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" fill="#fff">3D</text>
+    <rect x="430" y="34" width="340" height="40" rx="20" fill="#111" fill-opacity="0.54" stroke="#3a3732"/>
+    <text x="600" y="60" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="1.1" fill="#ece1d1">PRZECIĄGNIJ, ABY OBRÓCIĆ</text>
   </g>
 </svg>
