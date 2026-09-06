@@ -3,27 +3,49 @@
 import { FormEvent, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { LeadPayload } from "@/lib/types";
-import { formatPln } from "@/lib/format";
 
-export function LeadForm({ payload }: { payload: Omit<LeadPayload, "name" | "phone" | "email" | "message"> }) {
-  const [state, setState] = useState<"idle" | "sending" | "sent" | "error" | "demo">("idle");
+export function LeadForm({
+  payload,
+}: {
+  payload: Omit<LeadPayload, "name" | "phone" | "email" | "message">;
+}) {
+  const [state, setState] = useState<
+    "idle" | "sending" | "sent" | "error" | "demo"
+  >("idle");
+
   const [error, setError] = useState("");
 
   async function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
     const formEl = e.currentTarget;
     const form = new FormData(formEl);
+
+    const name = String(form.get("name") ?? "").trim();
     const phone = String(form.get("phone") ?? "").replace(/\s/g, "");
     const email = String(form.get("email") ?? "").trim();
-    const name = String(form.get("name") ?? "").trim();
+    const message = String(form.get("message") ?? "").trim();
 
-    if (name.length < 2 || phone.length < 7 || !email.includes("@")) {
-      setError("Sprawdź imię, telefon i e-mail.");
+    if (name.length < 2) {
+      setError("Wpisz imię i nazwisko.");
+      setState("error");
+      return;
+    }
+
+    if (phone.length < 7) {
+      setError("Wpisz poprawny numer telefonu.");
+      setState("error");
+      return;
+    }
+
+    if (!email.includes("@")) {
+      setError("Wpisz poprawny adres e-mail.");
       setState("error");
       return;
     }
 
     const supabase = createClient();
+
     if (!supabase) {
       setState("demo");
       return;
@@ -31,24 +53,29 @@ export function LeadForm({ payload }: { payload: Omit<LeadPayload, "name" | "pho
 
     setState("sending");
     setError("");
+
     const { error: insertError } = await supabase.from("leads").insert({
       apartment_id: payload.apartmentId,
+
       name,
       phone,
       email,
-      message: String(form.get("message") ?? ""),
+      message,
+
       selected_addons: payload.selectedAddons,
       selected_inventory: payload.selectedInventory,
+
       base_price: payload.basePrice,
       addons_total: payload.addonsTotal,
       inventory_total: payload.inventoryTotal,
       total_price: payload.totalPrice,
+
       source: "website",
-      status: "new"
+      status: "new",
     });
 
     if (insertError) {
-      setError(insertError.message);
+      setError("Nie udało się wysłać zapytania. Spróbuj ponownie.");
       setState("error");
       return;
     }
@@ -60,22 +87,79 @@ export function LeadForm({ payload }: { payload: Omit<LeadPayload, "name" | "pho
   return (
     <form className="leadForm" onSubmit={submit}>
       <div className="formGrid3">
-        <input name="name" placeholder="Imię i nazwisko" autoComplete="name" required />
-        <input name="phone" placeholder="Telefon" inputMode="tel" autoComplete="tel" required minLength={7} />
-        <input name="email" type="email" placeholder="E-mail" autoComplete="email" required />
+        <input
+          name="name"
+          placeholder="Imię i nazwisko"
+          autoComplete="name"
+          required
+        />
+
+        <input
+          name="phone"
+          placeholder="Telefon"
+          inputMode="tel"
+          autoComplete="tel"
+          required
+          minLength={7}
+        />
+
+        <input
+          name="email"
+          type="email"
+          placeholder="E-mail"
+          autoComplete="email"
+          required
+        />
       </div>
-      <textarea name="message" placeholder="Wiadomość (opcjonalnie)" rows={3} />
-      <div className="leadOrderSummary">
-        <span>Wybrana konfiguracja</span>
-        <strong>{formatPln(payload.totalPrice)}</strong>
-      </div>
-      <label className="consent"><input type="checkbox" required /> Wyrażam zgodę na kontakt w sprawie wybranego mieszkania.</label>
-      <button className="button buttonGold full" disabled={state === "sending" || state === "sent"}>
-        {state === "sending" ? "Wysyłanie…" : state === "sent" ? "Zapytanie wysłane ✓" : "Wyślij zapytanie"}
+
+      <textarea
+        name="message"
+        placeholder="Wiadomość (opcjonalnie)"
+        rows={3}
+      />
+
+      <label className="consent">
+        <input
+          className="consentCheckbox"
+          type="checkbox"
+          required
+        />
+
+        <span>
+          Wyrażam zgodę na kontakt w sprawie wybranego mieszkania.
+        </span>
+      </label>
+
+      <button
+        className="button buttonGold full"
+        type="submit"
+        disabled={state === "sending" || state === "sent"}
+      >
+        {state === "sending"
+          ? "Wysyłanie…"
+          : state === "sent"
+            ? "Zapytanie wysłane ✓"
+            : "Wyślij zapytanie"}
       </button>
-      {state === "sent" && <p className="formSuccess">Dziękujemy. Doradca otrzymał lokal, dodatki i łączną cenę.</p>}
-      {state === "demo" && <p className="formNotice">Tryb demo: po dodaniu zmiennych Supabase formularz zapisze zapytanie do bazy.</p>}
-      {state === "error" && <p className="formError">{error}</p>}
+
+      {state === "sent" && (
+        <p className="formSuccess">
+          Dziękujemy. Skontaktujemy się z Tobą w sprawie wybranego mieszkania.
+        </p>
+      )}
+
+      {state === "demo" && (
+        <p className="formNotice">
+          Formularz demonstracyjny. Po połączeniu z bazą zapytanie zostanie
+          przekazane do biura sprzedaży.
+        </p>
+      )}
+
+      {state === "error" && (
+        <p className="formError">
+          {error}
+        </p>
+      )}
     </form>
   );
 }
