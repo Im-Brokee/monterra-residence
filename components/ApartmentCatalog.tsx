@@ -52,6 +52,10 @@ export function ApartmentCatalog({ apartments, initialFloor, initialBuilding }: 
 
   return (
     <>
+      <div className="catalogQuickFilters" aria-label="Szybki wybór liczby pokoi">
+        <button className={rooms === "all" ? "active" : ""} onClick={() => setRooms("all")}>Wszystkie</button>
+        {[1,2,3,4,5].map((value) => <button key={value} className={rooms === String(value) ? "active" : ""} onClick={() => setRooms(String(value))}>{value} {value === 1 ? "pokój" : "pokoje"}</button>)}
+      </div>
       <section className="filters cardSoft expandedFilters">
         <label>Pokoi<select value={rooms} onChange={(e) => setRooms(e.target.value)}><option value="all">Wszystkie</option>{[1,2,3,4,5].map((v) => <option key={v} value={v}>{v}</option>)}</select></label>
         <label>Budynek<select value={building} onChange={(e) => setBuilding(e.target.value)}><option value="all">Wszystkie</option>{buildings.map((v) => <option key={v} value={v}>{v}</option>)}</select></label>

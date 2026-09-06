@@ -2,11 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Apartment } from "@/lib/types";
 import { balconyLabel, formatArea, formatPln, statusLabel } from "@/lib/format";
-import { getApartmentVisuals } from "@/lib/visuals";
+
+function visualForApartment(apartment: Apartment) {
+  if (apartment.rooms >= 4) return "/media/bedroom.webp";
+  if (apartment.rooms === 3) return "/media/living.webp";
+  if (apartment.floor >= 4) return "/media/aerial-evening.webp";
+  return "/media/living.webp";
+}
 
 export function ApartmentCard({ apartment }: { apartment: Apartment }) {
-  const visuals = getApartmentVisuals(apartment);
-
   return (
     <article className="apartmentCard premiumApartmentCard">
       <div className="apartmentCardTop overlayTop">
@@ -17,7 +21,7 @@ export function ApartmentCard({ apartment }: { apartment: Apartment }) {
       <Link href={`/mieszkania/${apartment.slug}`} className="apartmentVisualLink" aria-label={`Zobacz ${apartment.unitNumber}`}>
         <div className="apartmentPhoto">
           <Image
-            src={visuals.card}
+            src={visualForApartment(apartment)}
             alt={`Wizualizacja mieszkania ${apartment.unitNumber}`}
             fill
             sizes="(max-width: 760px) 100vw, (max-width: 1200px) 33vw, 25vw"
@@ -25,9 +29,6 @@ export function ApartmentCard({ apartment }: { apartment: Apartment }) {
           />
           <div className="apartmentPhotoShade" />
           <span className="styleBadge">{apartment.styleName}</span>
-          <div className="apartmentPhotoMeta">
-            <span className="planBadge">plan 2D + widok 3D</span>
-          </div>
           <div className="miniPlanFloating">
             <img src={apartment.floorplanUrl} alt={`Rzut ${apartment.unitNumber}`} loading="lazy" decoding="async" />
           </div>
@@ -35,9 +36,9 @@ export function ApartmentCard({ apartment }: { apartment: Apartment }) {
       </Link>
 
       <div className="apartmentCardBody">
-        <div className="apartmentMetrics premiumMetrics">
+        <div className="apartmentMetrics">
           <strong>{formatArea(apartment.area)}</strong>
-          <span>{apartment.rooms} {apartment.rooms === 1 ? "pokój" : apartment.rooms < 5 ? "pokoje" : "pokoi"}</span>
+          <span>{apartment.rooms} {apartment.rooms === 1 ? "pokój" : "pokoje"}</span>
           <span>Piętro {apartment.floor}</span>
           <span>{balconyLabel[apartment.balconyType]} {apartment.balconyArea ? formatArea(apartment.balconyArea) : ""}</span>
         </div>

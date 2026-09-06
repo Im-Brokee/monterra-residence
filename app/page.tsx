@@ -5,6 +5,8 @@ import { Footer } from "@/components/Footer";
 import { BuildingSelector } from "@/components/BuildingSelector";
 import { ApartmentCard } from "@/components/ApartmentCard";
 import { Reveal } from "@/components/Reveal";
+import { MortgageCalculator } from "@/components/MortgageCalculator";
+import { FloatingActions } from "@/components/FloatingActions";
 import { getApartments, getConstructionUpdates } from "@/lib/data";
 
 export default async function HomePage() {
@@ -34,11 +36,15 @@ export default async function HomePage() {
             <span className="heroKicker">NOWA DEFINICJA KOMFORTU · POZNAŃ</span>
             <h1>Miejsce,<br />w którym<br />chcesz być.</h1>
             <h2>Monterra Residence</h2>
-            <p>Szlachetna architektura, dopracowane wnętrza i pełny cyfrowy proces wyboru mieszkania — od pierwszego kliknięcia do wysłania gotowego zapytania.</p>
+            <p>Nowoczesna architektura, zieleń i pełny cyfrowy proces wyboru mieszkania — od pierwszego kliknięcia do konfiguracji ceny.</p>
+            <div className="heroLiveRow">
+              <span className="heroLiveBadge"><i /> SPRZEDAŻ TRWA</span>
+              <span>{available} mieszkań dostępnych teraz</span>
+            </div>
             <div className="heroMetaPills">
               <span>1–5 pokoi</span>
+              <span>27–121 m²</span>
               <span>2D + 3D + spacer</span>
-              <span>garaż i komórki</span>
             </div>
             <div className="heroActions">
               <Link className="button buttonGold" href="/mieszkania">Zobacz mieszkania →</Link>
@@ -62,24 +68,11 @@ export default async function HomePage() {
           <section className="shell section" id="inwestycja">
             <div className="sectionHeading splitHeading">
               <div><span className="eyebrow">MON TERRA</span><h2>Architektura, która ma znaczenie także po latach</h2></div>
-              <p>Spokojna bryła, wyraźna rytmika elewacji, dużo światła i przemyślane układy mieszkań — wszystko pokazane w sposób czytelny i sprzedażowy.</p>
+              <p>Spokojna bryła, dużo światła, dopracowane części wspólne i mieszkania zaprojektowane tak, żeby łatwo było wybrać je online.</p>
             </div>
             <div className="featureGrid" id="standard">
-              {[
-                ['3 min','do tramwaju'],
-                ['2','zielone dziedzińce'],
-                ['100%','garaż podziemny'],
-                ['2,70 m','wysokość mieszkań'],
-                ['Smart','home ready'],
-                ['24/7','strefa mieszkańca']
-              ].map(([value,label], index) => (
-                <Reveal key={label} delay={index * 55}>
-                  <div className="featureCard premiumFeatureCard">
-                    <small>{String(index + 1).padStart(2, '0')}</small>
-                    <strong>{value}</strong>
-                    <span>{label}</span>
-                  </div>
-                </Reveal>
+              {[['03 min','do tramwaju'],['02','zielone dziedzińce'],['100%','garaż podziemny'],['2,70 m','wysokość mieszkań'],['Smart','Home ready'],['24/7','strefa mieszkańca']].map(([value,label], index) => (
+                <Reveal key={label} delay={index * 55}><div className="featureCard"><strong>{value}</strong><span>{label}</span></div></Reveal>
               ))}
             </div>
           </section>
@@ -89,7 +82,7 @@ export default async function HomePage() {
           <section className="shell section imageStorySection">
             <div className="sectionHeading splitHeading">
               <div><span className="eyebrow">WIZUALIZACJE</span><h2>Zobacz inwestycję zanim powstanie</h2></div>
-              <p>Pełnoekranowe wizualizacje budynku, wejścia i wnętrz. Każdy kluczowy fragment inwestycji ma własną, czytelną prezentację.</p>
+              <p>Pełnoekranowe wizualizacje zamiast pustych makiet. Każdy kluczowy fragment inwestycji ma własną prezentację.</p>
             </div>
             <div className="storyGrid">
               <figure className="storyCard storyWide">
@@ -128,7 +121,7 @@ export default async function HomePage() {
               <div>
                 <span className="eyebrow light">POCZUJ PRZESTRZEŃ</span>
                 <h2>Nie tylko plan. Wejdź do środka.</h2>
-                <p>Klient przechodzi od karty mieszkania do planu 2D, modelu 3D i spaceru po wnętrzu bez wychodzenia z jednej strony.</p>
+                <p>Klient może zobaczyć salon, sypialnię i łazienkę, przełączyć się na rzut 2D, widok 3D i przejść przez mieszkanie jeszcze przed wizytą.</p>
                 <Link href={preview[0] ? `/mieszkania/${preview[0].slug}` : "/mieszkania"} className="button buttonGold">Uruchom spacer</Link>
               </div>
               <div className="interiorMosaic">
@@ -144,7 +137,7 @@ export default async function HomePage() {
           <section className="shell section" id="lokalizacja">
             <div className="sectionHeading splitHeading">
               <div><span className="eyebrow">LOKALIZACJA</span><h2>Wszystko w zasięgu ręki</h2></div>
-              <p>Park, komunikacja miejska, szkoła i codzienne usługi w zasięgu kilku minut od inwestycji.</p>
+              <p>Park, tramwaj, szkoła i codzienne usługi w kilku minutach od inwestycji.</p>
             </div>
             <div className="locationGrid premiumLocationGrid">
               <div className="locationCards">
@@ -163,6 +156,12 @@ export default async function HomePage() {
         </Reveal>
 
         <Reveal>
+          <section className="shell section">
+            <MortgageCalculator />
+          </section>
+        </Reveal>
+
+        <Reveal>
           <section className="shell section" id="postep">
             <div className="sectionHeading splitHeading"><div><span className="eyebrow">POSTĘP PRAC</span><h2>Od gruntu do odbioru</h2></div>{constructionUpdates[0] && <div className="progressNow"><strong>{constructionUpdates[0].progress}%</strong><span>{constructionUpdates[0].title}</span></div>}</div>
             <div className="timeline">
@@ -176,12 +175,13 @@ export default async function HomePage() {
 
         <section className="contactBand" id="kontakt">
           <div className="shell contactGrid">
-            <div><span className="eyebrow">KONTAKT</span><h2>Porozmawiajmy o Twoim mieszkaniu</h2><p>Wybierz lokal online, skonfiguruj dodatki i wyślij doradcy gotowe zapytanie z pełną kalkulacją.</p></div>
+            <div><span className="eyebrow">KONTAKT</span><h2>Porozmawiajmy o Twoim mieszkaniu</h2><p>Wybierz lokal online, skonfiguruj dodatki i wyślij gotowe zapytanie do doradcy.</p></div>
             <div className="advisorCard"><div className="advisorAvatar">KN</div><div><strong>Katarzyna Nowak</strong><span>Doradca ds. sprzedaży</span><span>+48 600 123 456</span><span>k.nowak@monterra.pl</span></div></div>
             <Link className="button buttonGold" href="/mieszkania">Wybierz mieszkanie</Link>
           </div>
         </section>
       </main>
+      <FloatingActions />
       <Footer />
     </>
   );

@@ -16,8 +16,18 @@ const displayFont = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Monterra Residence | Poznań",
-  description: "Interaktywny system sprzedaży mieszkań: wybór lokalu, 3D, spacer i konfigurator ceny."
+  metadataBase: new URL("https://monterra-residence.pl"),
+  title: { default: "Monterra Residence | Nowe mieszkania w Poznaniu", template: "%s | Monterra Residence" },
+  description: "Monterra Residence w Poznaniu — wybierz mieszkanie, sprawdź cenę, rzut 2D, widok 3D, spacer oraz dostępne miejsca postojowe i komórki.",
+  keywords: ["mieszkania Poznań", "deweloper Poznań", "nowe mieszkania", "Monterra Residence"],
+  openGraph: {
+    title: "Monterra Residence | Poznań",
+    description: "Nowoczesna inwestycja mieszkaniowa z interaktywnym wyborem lokalu.",
+    locale: "pl_PL",
+    type: "website",
+    images: [{ url: "/media/hero-building.webp", width: 1600, height: 900, alt: "Monterra Residence" }],
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

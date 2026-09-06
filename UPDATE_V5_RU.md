@@ -1,26 +1,40 @@
-MONTERRA V5 — premium redesign patch
+# Monterra Residence — V5 Portfolio Upgrade
 
-Что исправлено:
-1. Карточки квартир — теперь используются разные визуалы для разных квартир.
-2. Блок «Architektura...» — исправлены значения (3 min / 2 и т.д.), карточки сделаны дороже визуально.
-3. 2D планы — полностью заменены SVG-файлы на более чистые и «девелоперские» планы под каждую квартиру.
-4. 3D вид — заменены SVG cutaway на более премиальные isometric/cutaway визуалы под каждую квартиру.
-5. История цены — полностью переделана: нормальные значения, понятный график, актуальная цена, последняя смена и список обновлений.
-6. Детальная страница квартиры — hero, галерея и похожие квартиры теперь используют разные визуалы.
-7. Spacer / room rail — комнаты подтягиваются через визуальные пресеты по типу квартиры.
+Эта версия продолжает V4 и сохраняет существующую логику квартир, Supabase, админки, конфигуратора цены и истории цен.
 
-Что загрузить в проект:
-- app/globals.css
-- app/mieszkania/[slug]/page.tsx
-- app/page.tsx
-- components/ApartmentCard.tsx
-- components/PriceHistory.tsx
-- lib/data.ts
-- lib/demo-data.ts
-- lib/visuals.ts
-- public/demo/floorplans/*.svg
-- public/demo/cutaways/*.svg
-- public/media/variants/*.webp
+## Что добавлено
 
-SQL НЕ НУЖЕН.
-Достаточно заменить файлы, сделать commit и push.
+- полноценное мобильное меню вместо скрытия навигации;
+- телефон отдела продаж в desktop header;
+- live-индикатор продаж и количества доступных квартир в hero;
+- ипотечный калькулятор с ценой, первоначальным взносом, сроком и процентной ставкой;
+- быстрые фильтры 1–5 комнат над каталогом;
+- floating CTA на публичных страницах: звонок, запрос, каталог;
+- на карточке квартиры: печатная/PDF-версия через системный Print → Save as PDF и native Share/копирование ссылки;
+- отдельная 404-страница;
+- SEO metadata + Open Graph;
+- robots.txt / sitemap с динамическими URL квартир;
+- print styles для аккуратной карточки квартиры;
+- зафиксированы production dependencies вместо `latest`.
+
+## Зафиксированные версии
+
+- Next.js 16.3.4
+- React / React DOM 19.2.8
+- @supabase/ssr 0.12.6
+- @supabase/supabase-js 2.115.0
+- Node.js >= 22
+
+## Перед production deploy
+
+1. `npm install`
+2. `npm run build`
+3. проверить `.env.local` / Vercel Environment Variables:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+4. на demo без Supabase сайт продолжит использовать встроенные demo-data.
+5. при реальном домене заменить `https://monterra-residence.pl` в `app/layout.tsx`, `app/robots.ts`, `app/sitemap.ts`.
+
+## Важно
+
+Локальная среда агента в этой сессии не смогла скачать npm dependencies (network install timeout), поэтому полный `next build` именно здесь не был завершён. Код V5 сделан поверх ранее рабочей V4, а новые компоненты не меняют схему БД.

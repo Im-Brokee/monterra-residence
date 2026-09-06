@@ -3,20 +3,19 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FloatingActions } from "@/components/FloatingActions";
 import { ApartmentExperience } from "@/components/ApartmentExperience";
 import { ApartmentConfigurator } from "@/components/ApartmentConfigurator";
 import { PriceHistory } from "@/components/PriceHistory";
 import { Reveal } from "@/components/Reveal";
+import { ApartmentActions } from "@/components/ApartmentActions";
 import { getAddons, getApartment, getApartments, getInventoryItems, getPriceHistory } from "@/lib/data";
 import { balconyLabel, formatArea, formatPln, statusLabel } from "@/lib/format";
-import { getApartmentVisuals } from "@/lib/visuals";
 
 export default async function ApartmentDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const apartment = await getApartment(slug);
   if (!apartment) notFound();
-
-  const visuals = getApartmentVisuals(apartment);
 
   const [addons, inventory, allApartments, history] = await Promise.all([
     getAddons(),
@@ -36,7 +35,7 @@ export default async function ApartmentDetailPage({ params }: { params: Promise<
       <main>
         <section className="apartmentHero premiumApartmentHero">
           <div className="apartmentHeroBackdrop">
-            <Image src={visuals.hero} alt={`Wnętrze mieszkania ${apartment.unitNumber}`} fill priority sizes="100vw" className="apartmentHeroImage" />
+            <Image src="/media/living.webp" alt={`Wnętrze mieszkania ${apartment.unitNumber}`} fill priority sizes="100vw" className="apartmentHeroImage" />
             <div className="apartmentHeroShade" />
           </div>
           <div className="shell apartmentHeroGrid">
@@ -58,6 +57,7 @@ export default async function ApartmentDetailPage({ params }: { params: Promise<
               </div>
               <div className="heroPrice premiumHeroPrice"><span>Cena mieszkania</span><strong>{formatPln(apartment.price)}</strong><small>{formatPln(apartment.pricePerSqm)}/m²</small></div>
               <div className="heroCtas"><a href="#konfigurator" className="button buttonGold">Skonfiguruj cenę ↓</a><a href="#spacer" className="button buttonGlass">Zobacz 3D / spacer</a></div>
+              <ApartmentActions label={apartment.unitNumber} />
             </div>
           </div>
         </section>
@@ -69,9 +69,9 @@ export default async function ApartmentDetailPage({ params }: { params: Promise<
               <div id="spacer"><ApartmentExperience apartment={apartment} /></div>
 
               <div className="apartmentInteriorGallery">
-                <figure><Image src={visuals.gallery.living} alt="Salon z kuchnią" fill sizes="50vw" className="storyImage" /><figcaption>Salon z kuchnią</figcaption></figure>
-                <figure><Image src={visuals.gallery.bedroom} alt="Sypialnia" fill sizes="25vw" className="storyImage" /><figcaption>Sypialnia</figcaption></figure>
-                <figure><Image src={visuals.gallery.bathroom} alt="Łazienka" fill sizes="25vw" className="storyImage" /><figcaption>Łazienka</figcaption></figure>
+                <figure><Image src="/media/living.webp" alt="Salon z kuchnią" fill sizes="50vw" className="storyImage" /><figcaption>Salon z kuchnią</figcaption></figure>
+                <figure><Image src="/media/bedroom.webp" alt="Sypialnia" fill sizes="25vw" className="storyImage" /><figcaption>Sypialnia</figcaption></figure>
+                <figure><Image src="/media/bathroom.webp" alt="Łazienka" fill sizes="25vw" className="storyImage" /><figcaption>Łazienka</figcaption></figure>
               </div>
 
               <section className="detailSpecs">
@@ -92,8 +92,9 @@ export default async function ApartmentDetailPage({ params }: { params: Promise<
           </section>
         </Reveal>
 
-        {similar.length > 0 && <section className="shell section"><div className="sectionHeading splitHeading"><div><span className="eyebrow">PODOBNE</span><h2>Może zainteresują Cię również</h2></div><Link href="/mieszkania" className="textLink">Wszystkie →</Link></div><div className="similarGrid">{similar.map((a) => { const relatedVisuals = getApartmentVisuals(a); return <Link href={`/mieszkania/${a.slug}`} key={a.id} className="similarCard"><div className="similarImageWrap"><Image src={relatedVisuals.card} alt="" fill sizes="25vw" className="storyImage" /></div><div><strong>{a.unitNumber}</strong><span>{a.area} m² · {a.rooms} pokoje</span><b>{formatPln(a.price)}</b></div></Link>; })}</div></section>}
+        {similar.length > 0 && <section className="shell section"><div className="sectionHeading splitHeading"><div><span className="eyebrow">PODOBNE</span><h2>Może zainteresują Cię również</h2></div><Link href="/mieszkania" className="textLink">Wszystkie →</Link></div><div className="similarGrid">{similar.map((a) => <Link href={`/mieszkania/${a.slug}`} key={a.id} className="similarCard"><div className="similarImageWrap"><Image src="/media/living.webp" alt="" fill sizes="25vw" className="storyImage" /></div><div><strong>{a.unitNumber}</strong><span>{a.area} m² · {a.rooms} pokoje</span><b>{formatPln(a.price)}</b></div></Link>)}</div></section>}
       </main>
+      <FloatingActions />
       <Footer />
     </>
   );

@@ -1,5 +1,4 @@
 import type { Addon, Apartment, InventoryItem, PriceHistoryEntry } from "@/lib/types";
-import { getApartmentVisuals } from "@/lib/visuals";
 
 const layouts = [
   ["studio-27", 27, 1, "Studio Urban"],
@@ -23,7 +22,6 @@ export const demoApartments: Apartment[] = layouts.map((layout, index) => {
   const balconyArea = [12.5, 6.8, 7.2, 8.1, 9.3, 15.6, 16.9, 20.1, 25.8, 38.7][index];
   const price = basePrices[index];
   const unitNumber = `A.${floor}.${String(index + 1).padStart(2, "0")}`;
-  const visuals = getApartmentVisuals({ styleName, rooms, floor });
   return {
     id: `demo-${index + 1}`,
     slug: unitNumber.toLowerCase().replaceAll(".", "-"),
@@ -40,7 +38,11 @@ export const demoApartments: Apartment[] = layouts.map((layout, index) => {
     styleName,
     floorplanUrl: `/demo/floorplans/${code}.svg`,
     cutawayUrl: `/demo/cutaways/${code}.svg`,
-    tourRooms: visuals.tourRooms,
+    tourRooms: [
+      { id: "living", name: "Salon z kuchnią", image: "/media/living.webp" },
+      { id: "bedroom", name: "Sypialnia", image: "/media/bedroom.webp" },
+      { id: "bathroom", name: "Łazienka", image: "/media/bathroom.webp" }
+    ],
     exposure: index % 2 === 0 ? "Południowy zachód" : "Południowy wschód",
     ceilingHeight: index >= 8 ? 2.9 : 2.7,
     published: true

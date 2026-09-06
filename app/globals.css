@@ -1418,611 +1418,91 @@ h1, h2, h3, h4,
   .revealBlock { opacity:1 !important; transform:none !important; }
 }
 
-/* V5 premium redesign overrides */
-.premiumFeatureCard {
-  position: relative;
-  min-height: 170px;
-  justify-content: flex-start;
-  gap: 14px;
-  padding: 22px;
-  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(248,243,236,.9));
-  border: 1px solid rgba(207,190,165,.85);
-  box-shadow: 0 18px 40px rgba(74,54,28,.08);
+/* Portfolio-grade sales UX upgrade */
+.navActions { display: flex; align-items: center; gap: 14px; }
+.navPhone { font-size: 11px; font-weight: 700; letter-spacing: .02em; white-space: nowrap; color: var(--ink); }
+.menuToggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); background: rgba(255,255,255,.88); border-radius: 999px; position: relative; }
+.menuToggle span { position: absolute; width: 17px; height: 1px; background: var(--ink); left: 13px; transition: .25s ease; }
+.menuToggle span:first-child { top: 18px; } .menuToggle span:last-child { top: 24px; }
+.menuToggle.active span:first-child { top: 21px; transform: rotate(45deg); }
+.menuToggle.active span:last-child { top: 21px; transform: rotate(-45deg); }
+.mobileMenu { position: fixed; inset: 72px 0 0; z-index: 90; background: rgba(245,241,234,.98); backdrop-filter: blur(20px); opacity: 0; visibility: hidden; transform: translateY(-12px); transition: .28s ease; }
+.mobileMenu.open { opacity: 1; visibility: visible; transform: translateY(0); }
+.mobileMenuInner { padding-top: 38px; padding-bottom: 32px; height: 100%; display: flex; flex-direction: column; }
+.mobileMenu nav { margin-top: 22px; border-top: 1px solid var(--line); }
+.mobileMenu nav a { display: grid; grid-template-columns: 42px 1fr auto; align-items: center; border-bottom: 1px solid var(--line); padding: 17px 0; font-family: var(--font-display), Georgia, serif; font-size: clamp(26px,7vw,42px); }
+.mobileMenu nav a span { font-family: var(--font-body), sans-serif; font-size: 9px; color: var(--gold); }
+.mobileMenu nav a i { font-family: var(--font-body), sans-serif; font-size: 14px; font-style: normal; }
+.mobileMenuFooter { margin-top: auto; display: grid; gap: 8px; font-size: 13px; }
+.mobileMenuFooter .button { margin-top: 12px; }
+
+.heroLiveRow { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.78); font-size: 11px; margin: 20px 0 0; }
+.heroLiveBadge { display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px; border-radius: 999px; background: rgba(23,28,22,.55); border: 1px solid rgba(255,255,255,.2); color: #fff; letter-spacing: .08em; }
+.heroLiveBadge i { width: 7px; height: 7px; border-radius: 50%; background: #8fc287; box-shadow: 0 0 0 5px rgba(143,194,135,.13); }
+
+.financePanel { display: grid; grid-template-columns: minmax(250px,.65fr) 1.35fr; gap: clamp(24px,5vw,72px); align-items: center; }
+.financeCopy h2 { font-family: var(--font-display), Georgia, serif; font-size: clamp(40px,4vw,66px); font-weight: 400; line-height: .98; margin: 14px 0 20px; }
+.financeCopy p { color: var(--muted); line-height: 1.7; max-width: 520px; }
+.financeCalculator { padding: 26px; display: grid; grid-template-columns: 1fr 260px; gap: 28px; background: linear-gradient(145deg,#fffdf9,#f4eee4); }
+.financeFields { display: grid; gap: 24px; }
+.financeFields label { font-size: 11px; color: var(--muted); }
+.rangeValue { color: var(--ink); font-family: var(--font-display), Georgia, serif; font-size: 27px; margin: 7px 0 8px; }
+.financeFields input[type="range"] { width: 100%; accent-color: var(--gold); }
+.financeSelects { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.financeSelects select, .financeSelects input { margin-top: 7px; }
+.financeResult { background: #242622; color: white; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; }
+.financeResult > span { color: rgba(255,255,255,.52); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.financeResult > strong { font-family: var(--font-display), Georgia, serif; font-size: 38px; font-weight: 500; color: #e2bd83; line-height: 1; margin: 12px 0 24px; }
+.financeResult > strong small { display: block; font-family: var(--font-body), sans-serif; font-size: 10px; color: rgba(255,255,255,.5); margin-top: 7px; }
+.financeResult > div { display: flex; justify-content: space-between; gap: 10px; padding: 11px 0; border-top: 1px solid rgba(255,255,255,.1); font-size: 11px; }
+.financeResult > div span { color: rgba(255,255,255,.55); }
+.financeResult .button { margin-top: auto; }
+
+.catalogQuickFilters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.catalogQuickFilters button { border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 10px 15px; font-size: 11px; cursor: pointer; transition: .2s ease; }
+.catalogQuickFilters button:hover, .catalogQuickFilters button.active { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+.apartmentQuickActions { display: flex; gap: 8px; margin-top: 12px; }
+.apartmentQuickActions button { min-height: 40px; border: 1px solid rgba(255,255,255,.24); border-radius: 10px; background: rgba(255,255,255,.08); color: white; padding: 0 12px; font-size: 10px; cursor: pointer; backdrop-filter: blur(8px); }
+.apartmentQuickActions button:hover { background: rgba(255,255,255,.16); }
+
+.floatingActions { position: fixed; right: 18px; bottom: 18px; z-index: 75; display: grid; gap: 8px; }
+.floatingAction { min-width: 110px; min-height: 46px; padding: 0 14px; border: 1px solid rgba(26,27,24,.12); border-radius: 999px; background: rgba(255,253,249,.94); backdrop-filter: blur(14px); box-shadow: 0 12px 38px rgba(30,25,18,.12); display: flex; align-items: center; gap: 9px; font-size: 10px; }
+.floatingAction span { font-size: 14px; } .floatingAction.primary { background: var(--ink); color: white; border-color: var(--ink); }
+
+.notFoundPage { min-height: 100vh; display: grid; place-items: center; padding: 32px; background: radial-gradient(circle at 80% 20%,#eee1cc,#f8f4ed 45%,#ddd2c0); }
+.notFoundPage > div { width: min(760px,100%); }
+.notFoundPage h1 { font-family: var(--font-display), Georgia, serif; font-size: clamp(54px,9vw,100px); font-weight: 400; line-height: .9; margin: 16px 0 24px; }
+.notFoundPage p { max-width: 560px; color: var(--muted); line-height: 1.7; }
+
+@media (max-width: 1180px) {
+  .navPhone { display: none; }
 }
-.premiumFeatureCard::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(207,164,93,.16), transparent 34%);
-  pointer-events: none;
+@media (max-width: 900px) {
+  .menuToggle { display: block; }
+  .navCta { display: none; }
+  .financePanel { grid-template-columns: 1fr; }
+  .financeCalculator { grid-template-columns: 1fr; }
+  .financeResult { min-height: 300px; }
 }
-.premiumFeatureCard small {
-  font-size: 11px;
-  letter-spacing: .22em;
-  color: #a28358;
-  font-weight: 700;
-}
-.premiumFeatureCard strong {
-  font-size: clamp(36px, 4vw, 48px);
-  line-height: .95;
-  color: #7b5f34;
-}
-.premiumFeatureCard span {
-  font-size: 15px;
-  color: #544d43;
-  max-width: 13ch;
+@media (max-width: 640px) {
+  .siteHeader { height: 72px; }
+  .navWrap { min-height: 72px; }
+  .heroLiveRow { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .financeCalculator { padding: 16px; }
+  .financeSelects { grid-template-columns: 1fr; }
+  .floatingActions { left: 10px; right: 10px; bottom: 10px; grid-template-columns: 1fr 1fr 1.35fr; gap: 5px; }
+  .floatingAction { min-width: 0; min-height: 50px; justify-content: center; padding: 0 8px; border-radius: 14px; }
+  .floatingAction span { display: none; }
+  .apartmentQuickActions { flex-direction: column; }
 }
 
-.apartmentCard {
-  overflow: hidden;
-  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
-}
-.apartmentCard:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 30px 55px rgba(52,36,15,.12);
-  border-color: rgba(201,169,111,.7);
-}
-.apartmentPhoto::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 48%;
-  background: linear-gradient(180deg, transparent, rgba(15,15,15,.28));
-  pointer-events: none;
-}
-.miniPlanFloating {
-  width: 98px;
-  height: 80px;
-  border-radius: 14px;
-}
-.heroPlanGlass {
-  transform: translateY(12px);
-}
-.heroPlanGlass img,
-.experienceCanvas.lightCanvas img {
-  object-fit: contain;
-}
-
-.experience {
-  overflow: hidden;
-  border: 1px solid rgba(217,206,187,.9);
-  box-shadow: 0 24px 60px rgba(61,47,27,.06);
-}
-.experienceTabs {
-  display: grid;
-  grid-template-columns: repeat(4, max-content);
-  gap: 10px;
-  align-items: center;
-  padding: 16px;
-  border-bottom: 1px solid rgba(223,214,198,.9);
-  background: linear-gradient(180deg, rgba(248,243,236,.75), rgba(255,255,255,.9));
-}
-.experienceTabs button {
-  min-width: 170px;
-  min-height: 52px;
-  border-radius: 14px;
-  border: 1px solid rgba(213,201,181,.92);
-  background: rgba(255,255,255,.82);
-  font-weight: 700;
-  color: #5a5248;
-  transition: all .2s ease;
-}
-.experienceTabs button.active,
-.experienceTabs button:hover {
-  background: #fff;
-  color: #1a1a1a;
-  box-shadow: 0 10px 24px rgba(76,56,29,.08);
-}
-.experienceFullscreen {
-  margin-left: auto;
-}
-.experienceCanvas {
-  min-height: 610px;
-  background: linear-gradient(180deg, #f8f3eb, #f5eee3);
-}
-.experienceCanvas.lightCanvas {
-  padding: 28px;
-}
-.experienceCanvas.lightCanvas img {
-  filter: drop-shadow(0 18px 45px rgba(42,32,19,.09));
-}
-.canvasBadge,
-.canvasHint,
-.dragHint {
-  background: rgba(17,17,17,.82);
-  color: #fff7ec;
-  border: 1px solid rgba(255,255,255,.12);
-}
-.canvasBadge {
-  letter-spacing: .16em;
-}
-.interactive3d {
-  background: radial-gradient(circle at top center, rgba(207,164,93,.15), transparent 24%), linear-gradient(180deg, #232322, #131414);
-}
-.cutawayStage {
-  width: min(90%, 920px);
-  height: auto;
-  transition: transform .12s ease-out;
-}
-.cutawayStage img {
-  object-fit: contain;
-}
-.canvasControls button {
-  background: rgba(12,12,12,.86);
-  border: 1px solid rgba(255,255,255,.09);
-  color: #fff;
-}
-.canvasControls button:hover {
-  background: rgba(198,155,86,.92);
-}
-.tourViewport.immersiveTour {
-  min-height: 560px;
-  border-radius: 0 0 18px 18px;
-}
-.roomRail button {
-  border-radius: 16px;
-  border: 1px solid rgba(214,202,183,.86);
-  background: #fff;
-}
-.roomRail button.active {
-  border-color: #c89c58;
-  box-shadow: 0 14px 30px rgba(63,44,23,.09);
-}
-
-.priceHistoryPro {
-  display: grid;
-  gap: 16px;
-}
-.priceHistoryTopline {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.priceHistoryTopline > div {
-  border: 1px solid rgba(220,211,197,.92);
-  background: #faf7f2;
-  border-radius: 16px;
-  padding: 14px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.priceHistoryTopline span,
-.priceHistoryTable span,
-.priceHistoryTopline small {
-  color: #7e7569;
-  font-size: 12px;
-}
-.priceHistoryTopline strong {
-  font-size: 26px;
-  line-height: 1;
-}
-.priceHistoryTopline strong.up { color: #7c5d30; }
-.priceHistoryTopline strong.down { color: #9b4d3d; }
-.priceChartFrame {
-  display: grid;
-  grid-template-columns: 84px 1fr;
-  gap: 12px;
-  align-items: stretch;
-}
-.priceAxisY {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 8px 0 12px;
-  font-size: 11px;
-  color: #857c71;
-}
-.priceChartPro {
-  width: 100%;
-  height: 230px;
-  border-radius: 20px;
-  background: linear-gradient(180deg, #fbf8f4, #f4ece1);
-  border: 1px solid rgba(224,214,196,.94);
-  padding: 16px;
-  overflow: visible;
-}
-.priceGridLine {
-  stroke: #ddd1bd;
-  stroke-width: .6;
-  stroke-dasharray: 1.3 1.3;
-  vector-effect: non-scaling-stroke;
-}
-.priceChartLinePro {
-  fill: none;
-  stroke: #c39146;
-  stroke-width: 2.5;
-  vector-effect: non-scaling-stroke;
-}
-.priceChartPointPro {
-  fill: white;
-  stroke: #c39146;
-  stroke-width: 1.9;
-  vector-effect: non-scaling-stroke;
-}
-.priceChartValueLabel {
-  fill: #7f6237;
-  font-size: 4px;
-  font-weight: 700;
-}
-.priceAxisX {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: 11px;
-  color: #7d7368;
-  text-transform: uppercase;
-}
-.priceHistoryTable {
-  display: grid;
-  gap: 8px;
-}
-.priceHistoryTable > div {
-  display: grid;
-  grid-template-columns: 100px 1fr auto;
-  gap: 12px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  background: rgba(249,245,238,.88);
-  border: 1px solid rgba(222,212,196,.88);
-  align-items: center;
-}
-.priceHistoryTable strong {
-  font-size: 16px;
-}
-
-.specCard {
-  box-shadow: 0 20px 45px rgba(55,40,19,.05);
-}
-.specCard dl > div {
-  padding: 12px 0;
-}
-.specCard h3 {
-  margin-bottom: 16px;
-}
-
-@media (max-width: 980px) {
-  .experienceTabs {
-    grid-template-columns: 1fr 1fr;
-  }
-  .experienceTabs button {
-    min-width: 0;
-    width: 100%;
-  }
-  .experienceFullscreen {
-    margin-left: 0;
-  }
-  .priceHistoryTopline,
-  .priceChartFrame {
-    grid-template-columns: 1fr;
-  }
-  .priceAxisY {
-    display: none;
-  }
-}
-
-@media (max-width: 760px) {
-  .premiumFeatureCard strong {
-    font-size: 34px;
-  }
-  .experienceCanvas,
-  .tourViewport.immersiveTour {
-    min-height: 420px;
-    height: auto;
-  }
-  .experienceTabs {
-    grid-template-columns: 1fr;
-  }
-  .priceHistoryTable > div {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-}
-
-/* --- V6 refinement patch --- */
-.premiumApartmentCard {
-  overflow: hidden;
-  transition: transform .22s ease, box-shadow .22s ease;
-}
-.premiumApartmentCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 38px rgba(58,47,31,.1);
-}
-.apartmentVisualLink { display: block; margin-top: 14px; }
-.apartmentPhoto {
-  position: relative;
-  overflow: hidden;
-  border-radius: 18px;
-  min-height: 245px;
-  background: #d7d2cb;
-}
-.apartmentPhotoImage { object-fit: cover; transition: transform .35s ease; }
-.premiumApartmentCard:hover .apartmentPhotoImage { transform: scale(1.04); }
-.apartmentPhotoShade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(15,15,15,.05), rgba(15,15,15,.46));
-}
-.apartmentPhotoMeta {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  right: 14px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  z-index: 2;
-}
-.styleBadge,
-.planBadge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 0 12px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  backdrop-filter: blur(10px);
-}
-.styleBadge { background: rgba(28,28,27,.52); color: #f8f0e4; border: 1px solid rgba(255,255,255,.14); }
-.planBadge { background: rgba(255,255,255,.9); color: #5a4a33; }
-.miniPlanFloating {
-  position: absolute;
-  right: 14px;
-  bottom: 14px;
-  width: 120px;
-  height: 90px;
-  padding: 8px;
-  border-radius: 16px;
-  background: rgba(255,253,249,.92);
-  box-shadow: 0 14px 24px rgba(0,0,0,.18);
-  z-index: 2;
-}
-.miniPlanFloating img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.premiumMetrics { margin-top: 4px; }
-
-.premiumExperienceCard {
-  padding: 14px;
-}
-.premiumTabs {
-  align-items: center;
-}
-.experienceFullscreen {
-  max-width: 160px;
-}
-.experienceTopline {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  align-items: center;
-  padding: 18px 8px 2px;
-}
-.experienceTopline span {
-  display: block;
-  color: var(--muted);
-  font-size: 12px;
-}
-.experienceTopline strong {
-  display: block;
-  margin-top: 6px;
-  font-size: 20px;
-}
-.experienceMiniLegend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
-  color: var(--muted);
-  font-size: 12px;
-}
-.experienceMiniLegend i {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 6px;
-}
-.legendDay { background: #8aa070; }
-.legendPrivate { background: #c9b287; }
-.legendBath { background: #b4c5be; }
-.premiumCanvas {
-  border: 1px solid rgba(219,207,189,.8);
-}
-.premiumCutawayStage { width: 95%; }
-.dragHint {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  border-radius: 999px;
-  background: rgba(17,17,17,.54);
-  color: rgba(255,255,255,.92);
-  padding: 10px 14px;
-  font-size: 12px;
-  letter-spacing: .02em;
-}
-.premiumControls {
-  left: 50%;
-  transform: translateX(-50%);
-}
-.experienceInsights {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-top: 14px;
-}
-.experienceInsights > div {
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,.82);
-  border-radius: 14px;
-  padding: 14px;
-}
-.experienceInsights span {
-  display: block;
-  color: var(--muted);
-  font-size: 11px;
-  margin-bottom: 8px;
-}
-.experienceInsights strong {
-  font-size: 14px;
-}
-.premiumRoomRail button {
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.premiumRoomRail button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(56,45,30,.08);
-}
-
-.priceHistoryPro {
-  display: grid;
-  gap: 16px;
-}
-.priceSnapshotGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-.snapshotCard {
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  background: rgba(255,255,255,.84);
-  padding: 14px;
-}
-.snapshotCard span {
-  display: block;
-  color: var(--muted);
-  font-size: 11px;
-}
-.snapshotCard strong {
-  display: block;
-  margin-top: 8px;
-  font-size: 22px;
-  line-height: 1.15;
-}
-.snapshotCard small {
-  display: block;
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 11px;
-}
-.up { color: #55713f; }
-.down { color: #9f5149; }
-.priceHistoryChartShell {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 12px;
-  align-items: stretch;
-}
-.priceAxisY {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: var(--muted);
-  font-size: 11px;
-  padding: 14px 0;
-}
-.priceChartArea {
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(249,245,239,.9));
-  padding: 12px 14px 10px;
-}
-.priceChartPro {
-  width: 100%;
-  height: 210px;
-  display: block;
-}
-.priceGridLine {
-  stroke: rgba(188,165,127,.28);
-  stroke-width: 1;
-  stroke-dasharray: 2 3;
-}
-.priceChartAreaFill {
-  fill: url(#priceAreaFill);
-}
-.priceChartLinePro {
-  fill: none;
-  stroke: #c69758;
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.priceChartPointPro {
-  fill: #fff;
-  stroke: #c69758;
-  stroke-width: 1.6;
-}
-.priceChartValueLabel {
-  fill: #70552f;
-  font-size: 4px;
-  font-weight: 700;
-}
-.priceAxisX {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  color: var(--muted);
-  font-size: 11px;
-  margin-top: 8px;
-}
-.priceHistoryTable.detailed {
-  gap: 10px;
-}
-.priceHistoryTable.detailed > div {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr 1fr .8fr;
-  gap: 10px;
-  align-items: center;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(255,255,255,.78);
-}
-.priceHistoryTable.detailed span,
-.priceHistoryTable.detailed b {
-  font-size: 12px;
-  color: var(--muted);
-}
-.priceHistoryTable.detailed strong {
-  font-size: 14px;
-}
-.priceHistoryTable.detailed b.up,
-.priceHistoryTable.detailed b.down {
-  font-weight: 800;
-}
-.priceLegalNote { margin-top: 12px; }
-
-@media (max-width: 980px) {
-  .experienceInsights,
-  .priceSnapshotGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .priceHistoryChartShell {
-    grid-template-columns: 1fr;
-  }
-  .priceAxisY {
-    display: none;
-  }
-}
-
-@media (max-width: 760px) {
-  .apartmentPhoto { min-height: 220px; }
-  .miniPlanFloating { width: 96px; height: 74px; }
-  .experienceTopline,
-  .experienceMiniLegend,
-  .priceAxisX {
-    display: grid;
-    gap: 8px;
-  }
-  .experienceInsights,
-  .priceSnapshotGrid {
-    grid-template-columns: 1fr;
-  }
-  .priceHistoryTable.detailed > div {
-    grid-template-columns: 1fr;
-  }
+@media print {
+  .siteHeader, .footer, .floatingActions, .heroCtas, .apartmentQuickActions, .similarGrid, .experiencePromo { display: none !important; }
+  body { background: white !important; color: black !important; }
+  .premiumApartmentHero { min-height: auto !important; background: white !important; color: black !important; }
+  .apartmentHeroBackdrop { opacity: .08 !important; }
+  .premiumHeroInfo, .lightBackLink { color: black !important; }
+  .detailMainGrid { display: block !important; }
+  .configurator { position: static !important; page-break-before: always; }
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FloatingActions } from "@/components/FloatingActions";
 import { ApartmentCatalog } from "@/components/ApartmentCatalog";
 import { getApartments } from "@/lib/data";
 
@@ -32,6 +33,7 @@ export default async function ApartmentsPage({ searchParams }: { searchParams: P
         </section>
         <div className="shell section catalogSection"><ApartmentCatalog apartments={apartments} initialFloor={Number.isFinite(floor) ? floor : undefined} initialBuilding={building} /></div>
       </main>
+      <FloatingActions />
       <Footer />
     </>
   );
