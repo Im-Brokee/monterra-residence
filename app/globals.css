@@ -1,102 +1,167 @@
-/* ===== FIX FORMULARZA KONTAKTOWEGO ===== */
+"use client";
 
-.leadForm {
-  display: grid;
-  gap: 12px;
-}
+import { FormEvent, useState } from "react";
+import { createClient } from "@/lib/supabase/client";
+import type { LeadPayload } from "@/lib/types";
 
-.leadForm .consent {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 10px;
+export function LeadForm({
+  payload,
+}: {
+  payload: Omit<LeadPayload, "name" | "phone" | "email" | "message">;
+}) {
+  const [state, setState] = useState<
+    "idle" | "sending" | "sent" | "error" | "demo"
+  >("idle");
 
-  margin: 4px 0 8px;
+  const [error, setError] = useState("");
 
-  font-size: 12px;
-  line-height: 1.45;
-  color: #777167;
+  async function submit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-  cursor: pointer;
-}
+    const formEl = e.currentTarget;
+    const form = new FormData(formEl);
 
-.leadForm .consent .consentCheckbox,
-.leadForm .consent input[type="checkbox"] {
-  width: 18px !important;
-  height: 18px !important;
+    const name = String(form.get("name") ?? "").trim();
+    const phone = String(form.get("phone") ?? "").replace(/\s/g, "");
+    const email = String(form.get("email") ?? "").trim();
+    const message = String(form.get("message") ?? "").trim();
 
-  min-width: 18px !important;
-  max-width: 18px !important;
+    if (name.length < 2) {
+      setError("Wpisz imię i nazwisko.");
+      setState("error");
+      return;
+    }
 
-  min-height: 18px !important;
-  max-height: 18px !important;
+    if (phone.length < 7) {
+      setError("Wpisz poprawny numer telefonu.");
+      setState("error");
+      return;
+    }
 
-  padding: 0 !important;
-  margin: 1px 0 0 0 !important;
+    if (!email.includes("@")) {
+      setError("Wpisz poprawny adres e-mail.");
+      setState("error");
+      return;
+    }
 
-  flex: 0 0 18px;
+    const supabase = createClient();
 
-  border-radius: 5px;
+    if (!supabase) {
+      setState("demo");
+      return;
+    }
 
-  cursor: pointer;
+    setState("sending");
+    setError("");
 
-  accent-color: #bd914f;
-}
+    const { error: insertError } = await supabase
+      .from("leads")
+      .insert({
+        apartment_id: payload.apartmentId,
 
-.leadForm .consent span {
-  display: block;
-  flex: 1;
+        name,
+        phone,
+        email,
+        message,
 
-  margin: 0;
-  padding: 0;
+        selected_addons: payload.selectedAddons,
+        selected_inventory: payload.selectedInventory,
 
-  text-align: left;
-}
+        base_price: payload.basePrice,
+        addons_total: payload.addonsTotal,
+        inventory_total: payload.inventoryTotal,
+        total_price: payload.totalPrice,
 
-.leadForm .button.full {
-  width: 100%;
-  min-height: 54px;
+        source: "website",
+        status: "new",
+      });
 
-  margin-top: 2px;
+    if (insertError) {
+      setError("Nie udało się wysłać zapytania. Spróbuj ponownie.");
+      setState("error");
+      return;
+    }
 
-  font-size: 15px;
-  font-weight: 700;
-
-  border-radius: 14px;
-}
-
-.formSuccess,
-.formNotice,
-.formError {
-  margin: 2px 0 0;
-
-  padding: 11px 13px;
-
-  border-radius: 10px;
-
-  font-size: 12px;
-  line-height: 1.45;
-}
-
-.formSuccess {
-  background: #edf5e9;
-  color: #496341;
-}
-
-.formNotice {
-  background: #f5efe5;
-  color: #786747;
-}
-
-.formError {
-  background: #faece9;
-  color: #9b453b;
-}
-
-@media (max-width: 760px) {
-  .leadForm .consent {
-    font-size: 11px;
+    setState("sent");
+    formEl.reset();
   }
+
+  return (
+    <form className="leadForm" onSubmit={submit}>
+      <div className="formGrid3">
+        <input
+          name="name"
+          placeholder="Imię i nazwisko"
+          autoComplete="name"
+          required
+        />
+
+        <input
+          name="phone"
+          placeholder="Telefon"
+          inputMode="tel"
+          autoComplete="tel"
+          required
+          minLength={7}
+        />
+
+        <input
+          name="email"
+          type="email"
+          placeholder="E-mail"
+          autoComplete="email"
+          required
+        />
+      </div>
+
+      <textarea
+        name="message"
+        placeholder="Wiadomość (opcjonalnie)"
+        rows={3}
+      />
+
+      <label className="consent">
+        <input
+          className="consentCheckbox"
+          type="checkbox"
+          required
+        />
+
+        <span>
+          Wyrażam zgodę na kontakt w sprawie wybranego mieszkania.
+        </span>
+      </label>
+
+      <button
+        className="button buttonGold full"
+        type="submit"
+        disabled={state === "sending" || state === "sent"}
+      >
+        {state === "sending"
+          ? "Wysyłanie…"
+          : state === "sent"
+            ? "Zapytanie wysłane ✓"
+            : "Wyślij zapytanie"}
+      </button>
+
+      {state === "sent" && (
+        <p className="formSuccess">
+          Dziękujemy. Skontaktujemy się z Tobą w sprawie wybranego mieszkania.
+        </p>
+      )}
+
+      {state === "demo" && (
+        <p className="formNotice">
+          Formularz demonstracyjny. Po połączeniu z bazą zapytanie zostanie
+          przekazane do biura sprzedaży.
+        </p>
+      )}
+
+      {state === "error" && (
+        <p className="formError">
+          {error}
+        </p>
+      )}
+    </form>
+  );
 }
