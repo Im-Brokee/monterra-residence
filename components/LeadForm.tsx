@@ -12,7 +12,6 @@ export function LeadForm({
   const [state, setState] = useState<
     "idle" | "sending" | "sent" | "error" | "demo"
   >("idle");
-
   const [error, setError] = useState("");
 
   async function submit(e: FormEvent<HTMLFormElement>) {
@@ -56,20 +55,16 @@ export function LeadForm({
 
     const { error: insertError } = await supabase.from("leads").insert({
       apartment_id: payload.apartmentId,
-
       name,
       phone,
       email,
       message,
-
       selected_addons: payload.selectedAddons,
       selected_inventory: payload.selectedInventory,
-
       base_price: payload.basePrice,
       addons_total: payload.addonsTotal,
       inventory_total: payload.inventoryTotal,
       total_price: payload.totalPrice,
-
       source: "website",
       status: "new",
     });
@@ -124,7 +119,6 @@ export function LeadForm({
           type="checkbox"
           required
         />
-
         <span>
           Wyrażam zgodę na kontakt w sprawie wybranego mieszkania.
         </span>
@@ -156,9 +150,7 @@ export function LeadForm({
       )}
 
       {state === "error" && (
-        <p className="formError">
-          {error}
-        </p>
+        <p className="formError">{error}</p>
       )}
     </form>
   );
